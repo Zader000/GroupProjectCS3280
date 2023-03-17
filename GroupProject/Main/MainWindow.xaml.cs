@@ -29,7 +29,6 @@ namespace GroupProject
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             clsDataAccess ds = new clsDataAccess();
-            ds.StartConnection();
         }
     }
 }

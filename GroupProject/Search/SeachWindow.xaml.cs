@@ -22,6 +22,7 @@ namespace GroupProject
         public SeachWindow()
         {
             InitializeComponent();
+            SearchIconImg.Source = new BitmapImage(new Uri(@".../../../Assets/Images/search.png", UriKind.Relative));
         }
     }
 }

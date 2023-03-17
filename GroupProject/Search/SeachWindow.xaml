@@ -6,7 +6,31 @@
         xmlns:local="clr-namespace:GroupProject"
         mc:Ignorable="d"
         Title="SeachWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+               FontSize="18">
+            Lookup Invoice
+        </Label>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
+                Invoice #
+            </Label>
+            <TextBox Name="InvNumSearchBox" Height="22" Width="150"></TextBox>
+            <Button Height="25" Width="25" Margin="5 0 0 0">
+                <Image Name="SearchIconImg"/>
+            </Button>
+        </StackPanel>
+        <DataGrid Grid.Row="2">
+            <DataGrid.ColumnHeaderStyle>
+                <Style>
+                    
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
     </Grid>
 </Window>
