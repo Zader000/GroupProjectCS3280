@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using GroupProject.Search;
 
 namespace GroupProject
@@ -43,7 +35,6 @@ namespace GroupProject
                 { "Date Invoiced", "InvoiceDate" }
             };
             SearchFieldComboBox.ItemsSource = FieldsDict.Keys;
-            DialogResult = false;
         }
 
         /// <summary>
@@ -110,7 +101,7 @@ namespace GroupProject
         }
 
         /// <summary>
-        /// No invoice is selected and sets <code>DialogResult</code> to false.
+        /// No invoice is selected and sets DialogResult to false.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -122,8 +113,8 @@ namespace GroupProject
 
         /// <summary>
         /// Gets the invoice double clicked by the user from the DataGrid.
-        /// Sets <code>SelectedInvoice</code> to the invoice to be used from other windows
-        /// Sets <code>DialogResult</code> to true then closes the window.
+        /// Sets SelectedInvoice to the invoice to be used from other windows
+        /// Sets DialogResult to true then closes the window.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -139,7 +130,7 @@ namespace GroupProject
         /// Handles errors by showing the message and stack trace of the exception.
         /// Sets loading to false just in case the exception was thrown while data was loading.
         /// </summary>
-        /// <param name="ex"></param>
+        /// <param name="ex">The thrown exception</param>
         private void HandleError(Exception ex)
         {
             MessageBox.Show(ex.Message);

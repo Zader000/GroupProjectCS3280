@@ -10,26 +10,32 @@ using GroupProject.Data;
 
 namespace GroupProject.Search
 {
+    /// <summary>
+    /// Handles the communication of the database and the GUI. Does so by interpreting the user input, formatting the SQL,
+    /// and returning the query results back.
+    /// </summary>
     public static class SearchSql
     {
+        /// <summary>
+        /// Queries the database Invoice table for invoices based on the field(column) and value
+        /// </summary>
+        /// <param name="field">Column to be filtered on</param>
+        /// <param name="value">Value in the where clause</param>
+        /// <returns>IAsyncEnumerable&lt;Invoice&gt;</returns>
+        /// <exception cref="Exception">
+        /// Throws an exception if the field is ID or InvoiceNumber and the value is not an integer
+        /// </exception>
         public static async IAsyncEnumerable<Invoice> SearchInvoices(string field, string value)
         {
-            string valStr;
+            string valStr = field switch
+            {
+                "ID" or "InvoiceNumber" when !int.TryParse(value, out int intVal) => throw new Exception(
+                    $"The value for {field} must be a number"),
+                "ID" or "InvoiceNumber" => value,
+                "InvoiceDate" => $"#{value}#",
+                _ => $"'{value}'"
+            };
             
-            if (field is "ID" or "InvoiceNumber")
-            {
-                if (!int.TryParse(value, out int intVal))
-                    throw new Exception($"The value for {field} must be a number");
-                valStr = value;
-            }
-            else if (field == "InvoiceDate")
-            {
-                valStr = $"#{value}#";
-            }
-            else
-            {
-                valStr = $"'{value}'";
-            }
             string stmt = $"select * from InvoiceTest where {field} = {valStr};";
 
             clsDataAccess da = new clsDataAccess();
@@ -39,11 +45,8 @@ namespace GroupProject.Search
             {
                 yield return new Invoice(int.Parse(row["ID"].ToString()),
                     int.Parse(row["InvoiceNumber"].ToString()), row["CustomerName"].ToString(),
-                    row["InvoiceDate"].ToString(), new SqlMoney(double.Parse(row["InvoiceAmount"].ToString())));
+                    row["InvoiceDate"].ToString(), double.Parse(row["InvoiceAmount"].ToString()));
             }
-            
-            // Simulate load time
-            await Task.Delay(1000);
         }
     }
 }
