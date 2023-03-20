@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GroupProject"
         mc:Ignorable="d"
-        Title="SeachWindow" Height="450" Width="800">
+        Title="Search Window" Height="450" Width="800" Background="#333">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-               FontSize="18">
+               FontSize="22" Foreground="White" Background="RoyalBlue">
             Lookup Invoice
         </Label>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -25,16 +25,36 @@
                 <Image Name="SearchIconImg"/>
             </Button>
         </StackPanel>
-        <DataGrid Grid.Row="2" Name="SearchResultsDataGrid" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Invoice #" Binding="{Binding Path=InvoiceNumber}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Customer" Binding="{Binding Path=CustomerName}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Date Invoiced" Binding="{Binding Path=InvoiceDate}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Invoice Amount" Binding="{Binding Path=InvoiceAmount}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Grid.Row="3" Name="BackBtn" Click="BackBtn_OnClick">
+        <Border Grid.Row="2" BorderThickness="2" BorderBrush="#1a1a1a" Margin="20 5 20 20">
+            <DataGrid Name="SearchResultsDataGrid" IsReadOnly="True" AutoGenerateColumns="False" 
+                      ItemsSource="{Binding}" Background="#333" RowHeaderWidth="0" BorderThickness="0" 
+                       Padding="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Invoice #" Binding="{Binding Path=InvoiceNumber}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Customer" Binding="{Binding Path=CustomerName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Date Invoiced" Binding="{Binding Path=InvoiceDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Invoice Amount" Binding="{Binding Path=InvoiceAmount}"></DataGridTextColumn>
+                </DataGrid.Columns>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#1A1A1A"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="#777"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Height" Value="22"/>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+        </Border>
+        <Button Grid.Row="3" Name="BackBtn" Click="BackBtn_OnClick" Foreground="White" Background="RoyalBlue" FontSize="18">
             Back
         </Button>
     </Grid>
