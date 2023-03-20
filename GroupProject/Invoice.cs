@@ -21,4 +21,5 @@ public class Invoice
         InvoiceDate = invoiceDate ?? throw new ArgumentNullException(nameof(invoiceDate));
         InvoiceAmount = invoiceAmount;
     }
+
 }

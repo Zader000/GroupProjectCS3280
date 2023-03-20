@@ -50,6 +50,7 @@
                         <Setter Property="Background" Value="#777"/>
                         <Setter Property="Foreground" Value="White"/>
                         <Setter Property="Height" Value="22"/>
+                        <EventSetter Event="MouseDoubleClick" Handler="RowDoubleClick_OnHandler"/>
                     </Style>
                 </DataGrid.RowStyle>
             </DataGrid>
