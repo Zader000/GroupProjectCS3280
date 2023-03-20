@@ -21,17 +21,18 @@ namespace GroupProject.Data
         /// </summary>
         /// <param name="stmt"></param>
         /// <returns></returns>
-        public DataSet ExecuteQuery(string stmt)
+        public async Task<DataSet> ExecuteQuery(string stmt)
         {
             try
             {
                 DataSet ds = new DataSet();
-                using OleDbConnection conn = new OleDbConnection(_connectionString);
+                await using OleDbConnection conn = new OleDbConnection(_connectionString);
                 using OleDbDataAdapter adapter = new OleDbDataAdapter();
-                conn.Open();
+                await conn.OpenAsync();
                 adapter.SelectCommand = new OleDbCommand(stmt, conn);
                 adapter.SelectCommand.CommandTimeout = 0;
                 adapter.Fill(ds);
+                await conn.CloseAsync();
                 return ds;
             }
             catch (Exception e)

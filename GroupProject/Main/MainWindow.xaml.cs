@@ -21,6 +21,7 @@ namespace GroupProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -28,7 +29,8 @@ namespace GroupProject
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            clsDataAccess ds = new clsDataAccess();
+            var se = new SearchWindow();
+            se.ShowDialog();
         }
     }
 }
