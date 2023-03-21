@@ -19,7 +19,8 @@
         </Label>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <ComboBox Name="SearchFieldComboBox" Height="22" Width="150" Margin="0 0 5 0" SelectionChanged="SearchFieldComboBox_OnSelectionChanged"/>
-            <TextBox Name="SearchTextBox" Height="22" Width="150" Visibility="Collapsed"/>
+            <ComboBox Name="InvoiceNumberCB" Height="22" Width="150"/>
+            <ComboBox Name="InvoiceAmountCB" Height="22" Width="150" Visibility="Collapsed"/>
             <DatePicker Name="InvDatePicker" VerticalAlignment="Center" Visibility="Collapsed"/>
             <Button Name="SearchBtn" Height="25" Width="25" Margin="5 0 0 0" Click="SearchBtn_OnClick" Padding="0">
                 <Image Name="SearchIconImg"/>
@@ -31,10 +32,10 @@
                        Padding="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Invoice #" Binding="{Binding Path=InvoiceNumber}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Customer" Binding="{Binding Path=CustomerName}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Date Invoiced" Binding="{Binding Path=InvoiceDate}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Invoice Amount" Binding="{Binding Path=InvoiceAmount}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Invoice #" Binding="{Binding Path=InvoiceNumber}"/>
+                    <DataGridTextColumn Header="Customer" Binding="{Binding Path=CustomerName}"/>
+                    <DataGridTextColumn Header="Date Invoiced" Binding="{Binding Path=InvoiceDate}"/>
+                    <DataGridTextColumn Header="Invoice Amount" Binding="{Binding Path=InvoiceAmount}"/>
                 </DataGrid.Columns>
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
@@ -55,8 +56,18 @@
                 </DataGrid.RowStyle>
             </DataGrid>
         </Border>
-        <Button Grid.Row="3" Name="BackBtn" Click="BackBtn_OnClick" Foreground="White" Background="RoyalBlue" FontSize="18">
-            Back
-        </Button>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Name="SelectBtn" Foreground="White" Background="RoyalBlue" FontSize="18" Click="SelectBtn_OnClick">
+                Select
+            </Button>
+            <Button Grid.Column="1" Name="BackBtn" Click="BackBtn_OnClick" Foreground="White" Background="#777" FontSize="18">
+                Back
+            </Button>
+        </Grid>
+        
     </Grid>
 </Window>

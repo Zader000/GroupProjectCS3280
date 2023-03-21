@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -23,18 +24,24 @@ namespace GroupProject
         /// </summary>
         public Invoice SelectedInvoice { get; private set; }
         
+        private IList<Invoice> AllInvoices { get; }
+        
         public SearchWindow()
         {
             InitializeComponent();
             SearchIconImg.Source = new BitmapImage(new Uri(@"../../../Assets/Images/search-sm.png", UriKind.Relative));
             FieldsDict = new Dictionary<string, string>
             {
-                { "ID", "ID" },
                 { "Invoice #", "InvoiceNumber" },
-                { "Customer", "CustomerName" },
+                { "Invoice Amount", "InvoiceAmount" },
                 { "Date Invoiced", "InvoiceDate" }
             };
             SearchFieldComboBox.ItemsSource = FieldsDict.Keys;
+            Loading(true);
+            AllInvoices = SearchLogic.GetAllInvoices();
+            InvoiceNumberCB.ItemsSource = from inv in AllInvoices select inv.InvoiceNumber.ToString();
+            SearchResultsDataGrid.DataContext = AllInvoices;
+            Loading(false);
         }
 
         /// <summary>
@@ -43,21 +50,22 @@ namespace GroupProject
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void SearchBtn_OnClick(object sender, RoutedEventArgs e)
+        private void SearchBtn_OnClick(object sender, RoutedEventArgs e)
         {
             try
             {
                 Loading(true);
                 IList<Invoice> invoices = new List<Invoice>();
 
-                await foreach (Invoice i in SearchSql.SearchInvoices(
-                                   FieldsDict[SearchFieldComboBox.SelectedValue.ToString()],
-                                   SearchFieldComboBox.SelectedValue.ToString() == "Date Invoiced"
-                                       ? InvDatePicker.SelectedDate.Value.ToShortDateString()
-                                       : SearchTextBox.Text))
-                {
-                    invoices.Add(i);
-                }
+                // todo - fix to new style with CB's
+                // foreach (Invoice i in SearchLogic.SearchInvoices(
+                //                    FieldsDict[SearchFieldComboBox.SelectedValue.ToString()],
+                //                    SearchFieldComboBox.SelectedValue.ToString() == "Date Invoiced"
+                //                        ? InvDatePicker.SelectedDate.Value.ToShortDateString()
+                //                        : SearchTextBox.Text))
+                // {
+                //     invoices.Add(i);
+                // }
 
                 SearchResultsDataGrid.DataContext = invoices;
                 Loading(false);
@@ -77,7 +85,8 @@ namespace GroupProject
             Opacity = isLoading ? 0.8 : 1;
             SearchBtn.IsEnabled = !isLoading;
             SearchFieldComboBox.IsEnabled = !isLoading;
-            SearchTextBox.IsEnabled = !isLoading;
+            InvoiceAmountCB.IsEnabled = !isLoading;
+            InvoiceNumberCB.IsEnabled = !isLoading;
         }
 
         /// <summary>
@@ -88,15 +97,23 @@ namespace GroupProject
         /// <param name="e"></param>
         private void SearchFieldComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (SearchFieldComboBox.SelectedValue.ToString() == "Date Invoiced")
+            switch (SearchFieldComboBox.SelectedValue.ToString())
             {
-                SearchTextBox.Visibility = Visibility.Collapsed;
-                InvDatePicker.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                InvDatePicker.Visibility = Visibility.Collapsed;
-                SearchTextBox.Visibility = Visibility.Visible;
+                case "Date Invoiced":
+                    InvoiceAmountCB.Visibility = Visibility.Collapsed;
+                    InvoiceNumberCB.Visibility = Visibility.Collapsed;
+                    InvDatePicker.Visibility = Visibility.Visible;
+                    break;
+                case "Invoice Amount":
+                    InvoiceAmountCB.Visibility = Visibility.Visible;
+                    InvoiceNumberCB.Visibility = Visibility.Collapsed;
+                    InvDatePicker.Visibility = Visibility.Collapsed;
+                    break;
+                default:
+                    InvoiceAmountCB.Visibility = Visibility.Collapsed;
+                    InvoiceNumberCB.Visibility = Visibility.Visible;
+                    InvDatePicker.Visibility = Visibility.Collapsed;
+                    break;
             }
         }
 
@@ -136,6 +153,19 @@ namespace GroupProject
             MessageBox.Show(ex.Message);
             MessageBox.Show(ex.StackTrace);
             Loading(false);
+        }
+
+        private void SelectBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            SelectedInvoice = (Invoice)SearchResultsDataGrid.SelectedItem;
+            if (SelectedInvoice != null)
+            {
+                DialogResult = true;
+                Close();
+                return;
+            }
+            //todo change to err label instead of message box
+            MessageBox.Show("Please click or double click an invoice in the table to select it");
         }
     }
 }
