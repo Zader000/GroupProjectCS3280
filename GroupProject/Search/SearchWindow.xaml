@@ -9,8 +9,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
@@ -18,13 +19,17 @@
             Lookup Invoice
         </Label>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <ComboBox Name="SearchFieldComboBox" Height="22" Width="150" Margin="0 0 5 0" SelectionChanged="SearchFieldComboBox_OnSelectionChanged"/>
-            <ComboBox Name="InvoiceNumberCB" Height="22" Width="150"/>
-            <ComboBox Name="InvoiceAmountCB" Height="22" Width="150" Visibility="Collapsed"/>
-            <DatePicker Name="InvDatePicker" VerticalAlignment="Center" Visibility="Collapsed"/>
-            <Button Name="SearchBtn" Height="25" Width="25" Margin="5 0 0 0" Click="SearchBtn_OnClick" Padding="0">
-                <Image Name="SearchIconImg"/>
-            </Button>
+            <Label Name="InvoiceNumberLbl" Content="Invoice #:" VerticalContentAlignment="Center" Foreground="White" 
+                   Margin="5 0 0 0" FontSize="14"/>
+            <ComboBox Name="InvoiceNumberCB" Height="22" Width="100" SelectionChanged="InvoiceNumberCB_OnSelectionChanged"/>
+            <Label Name="InvoiceAmountLbl" Content="Amount:" Foreground="white" VerticalContentAlignment="Center" 
+                   Margin="5 0 0 0" FontSize="14"/>
+            <ComboBox Name="InvoiceAmountCB" Height="22" Width="100" SelectionChanged="InvoiceAmountCB_OnSelectionChanged"/>
+            <Label Name="InvoiceDateLbl" Content="Date:" Foreground="white" VerticalContentAlignment="Center" 
+                   Margin="5 0 0 0" FontSize="14"/>
+            <DatePicker Name="InvDatePicker" VerticalAlignment="Center" Width="120" SelectedDateChanged="InvDatePicker_OnSelectedDateChanged"/>
+            <Button Name="ClearBtn" Content="Clear" Width="100" Height="25" Margin="25 0 0 0" Click="ClearBtn_OnClick" 
+                    Background="Firebrick" Foreground="White" FontSize="14"/>
         </StackPanel>
         <Border Grid.Row="2" BorderThickness="2" BorderBrush="#1a1a1a" Margin="20 5 20 20">
             <DataGrid Name="SearchResultsDataGrid" IsReadOnly="True" AutoGenerateColumns="False" 
@@ -56,18 +61,19 @@
                 </DataGrid.RowStyle>
             </DataGrid>
         </Border>
-        <Grid Grid.Row="3">
+        <Label Grid.Row="3" Name="NotificationLbl" Foreground="White" FontSize="14" 
+               HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Name="SelectBtn" Foreground="White" Background="RoyalBlue" FontSize="18" Click="SelectBtn_OnClick">
-                Select
+                Select Invoice
             </Button>
             <Button Grid.Column="1" Name="BackBtn" Click="BackBtn_OnClick" Foreground="White" Background="#777" FontSize="18">
                 Back
             </Button>
         </Grid>
-        
     </Grid>
 </Window>

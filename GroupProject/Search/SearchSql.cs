@@ -8,33 +8,50 @@ namespace GroupProject.Search
     public static class SearchSql
     {
         
-        /// <summary>
-        /// Creates the sql statement for the Invoice table
-        /// </summary>
-        /// <param name="field">Column Name</param>
-        /// <param name="value">Value to be compared</param>
-        /// <returns>SQL Statement string</returns>
-        /// <exception cref="Exception">
-        /// Throws an exception if the field is InvoiceAmount or InvoiceNumber and the value is not a number
-        /// </exception>
-        public static string GetSearchInvoicesQuery(string field, string value)
+        
+        public static string GetInvoiceByInvoiceNumberQuery(string invNumber)
         {
-            string valStr = field switch
-            {
-                "InvoiceNumber" when !int.TryParse(value, out int intVal) => throw new Exception(
-                    $"The value for {field} must be a number"),
-                "InvoiceAmount" when !double.TryParse(value, out double dblVal) => throw new Exception(
-                $"The value for {field} must be a number"),
-                "InvoiceAmount" or "InvoiceNumber" => value,
-                "InvoiceDate" => $"#{value}#",
-                _ => $"'{value}'"
-            };
-            return $"select * from InvoiceTest where {field} = {valStr};";
+            return $"select * from Invoice where InvoiceNumber = {invNumber};";
+        }
+        
+        public static string GetInvoiceByDateQuery(string date)
+        {
+            return
+                $"select * from Invoice where InvoiceDate = #{date}#;";
         }
 
+        public static string GetInvoiceByAmountQuery(string amount)
+        {
+            return
+                $"select * from Invoice where InvoiceAmount = {amount};";
+        }
+
+        public static string GetInvoiceByDateAndAmountQuery(string amount, string dateStr)
+        {
+            return $"select * from Invoice where InvoiceAmount = {amount} and InvoiceDate = #{dateStr}#;";
+        }
+
+        public static string GetInvoiceByDateAndNumberQuery(string invNumber, string date)
+        {
+            return
+                $"select * from Invoice where InvoiceNumber = {invNumber} and InvoiceDate = #{date}#;";
+        }
+
+        public static string GetInvoiceByNumberAndAmountQuery(string invNumber, string amount)
+        {
+            return
+                $"select * from Invoice where InvoiceNumber = {invNumber} and InvoiceAmount = {amount};";
+        }
+        
+        public static string GetInvoiceByInvoiceNumberAmountDateQuery(string invNumber, string amount, string date)
+        {
+            return
+                $"select * from Invoice where InvoiceNumber = {invNumber} and InvoiceAmount = {amount} and InvoiceDate = #{date}#;";
+        }
+        
         public static string GetAllInvoicesQuery()
         {
-            return "select * from InvoiceTest;";
+            return "select * from Invoice;";
         }
     }
 }

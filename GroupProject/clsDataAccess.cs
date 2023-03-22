@@ -14,14 +14,12 @@ namespace GroupProject.Data
     {
         private const string _connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=../../../Data/DB.accdb";
 
-        public clsDataAccess() { }
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="stmt"></param>
         /// <returns></returns>
-        public  DataSet ExecuteQuery(string stmt)
+        public DataSet ExecuteQuery(string stmt)
         {
             try
             {

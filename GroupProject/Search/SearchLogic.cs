@@ -13,44 +13,53 @@ namespace GroupProject.Search
     /// </summary>
     public static class SearchLogic
     {
-        /// <summary>
-        /// Queries the database Invoice table for invoices based on the field(column) and value
-        /// if both parameters are null, the method returns all invoices.
-        /// </summary>
-        /// <param name="field">Column to be filtered on</param>
-        /// <param name="value">Value in the where clause</param>
-        /// <returns>IAsyncEnumerable&lt;Invoice&gt;</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Throws argument null exception if one but not the other parameter is null
-        /// Both can be null to get all invoices though
-        /// </exception>
-        public static IEnumerable<Invoice> SearchInvoices(string? field, string? value)
-        {
-            if ((field == null && value != null) || (value == null && field != null))
-                throw new ArgumentNullException("Both params need to be null or not null");
-            
-            string stmt = 
-                field != null && value != null 
-                    ? SearchSql.GetSearchInvoicesQuery(field, value)
-                    : SearchSql.GetAllInvoicesQuery();
-            clsDataAccess da = new clsDataAccess();
-            DataSet results = da.ExecuteQuery(stmt);
 
-            foreach (DataRow row in results.Tables[0].Rows)
-            {
-                yield return new Invoice(int.Parse(row["ID"].ToString()),
-                    int.Parse(row["InvoiceNumber"].ToString()), row["CustomerName"].ToString(),
-                    row["InvoiceDate"].ToString(), double.Parse(row["InvoiceAmount"].ToString()));
-            }
+        /// <summary>
+        /// Executes a sql query that is determined by the given parameters. If a parameter is null it will not be 
+        /// included in the where clause.
+        /// </summary>
+        /// <param name="invNumber"></param>
+        /// <param name="amount"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static IList<Invoice> GetInvoices(string? invNumber, string? amount, string? date)
+        {
+            if (invNumber != null && amount != null && date != null)
+                return ParseResults(new clsDataAccess().ExecuteQuery(SearchSql.GetInvoiceByInvoiceNumberAmountDateQuery(invNumber, amount, date)));
+            if (invNumber != null && amount != null && date == null)
+                return ParseResults(
+                    new clsDataAccess().ExecuteQuery(SearchSql.GetInvoiceByNumberAndAmountQuery(invNumber, amount)));
+            if (invNumber != null && amount == null && date == null)
+                return ParseResults(
+                    new clsDataAccess().ExecuteQuery(SearchSql.GetInvoiceByInvoiceNumberQuery(invNumber)));
+            if (invNumber == null && amount != null && date != null)
+                return ParseResults(
+                    new clsDataAccess().ExecuteQuery(SearchSql.GetInvoiceByDateAndAmountQuery(amount, date)));
+            if (invNumber == null && amount == null && date != null)
+                return ParseResults(new clsDataAccess().ExecuteQuery(SearchSql.GetInvoiceByDateQuery(date)));
+            if (invNumber == null && amount != null && date == null)
+                return ParseResults(new clsDataAccess().ExecuteQuery(SearchSql.GetInvoiceByAmountQuery(amount)));
+            if (invNumber != null && amount == null && date != null)
+                return ParseResults(
+                    new clsDataAccess().ExecuteQuery(SearchSql.GetInvoiceByDateAndNumberQuery(invNumber, date)));
+            return ParseResults(new clsDataAccess().ExecuteQuery(SearchSql.GetAllInvoicesQuery()));
         }
 
         /// <summary>
-        /// 
+        /// Takes a DataSet that has invoice information and parses it it into Invoice Objects and returns a list of them
         /// </summary>
+        /// <param name="results">IList&lt;Invoice&gt; from the rows of the DataSet</param>
         /// <returns></returns>
-        public static IList<Invoice> GetAllInvoices()
+        private static IList<Invoice> ParseResults(DataSet results)
         {
-            return SearchInvoices(null, null).ToList();
+            IList<Invoice> invoices = new List<Invoice>();
+            foreach (DataRow row in results.Tables[0].Rows)
+            {
+                invoices.Add(new Invoice(int.Parse(row["ID"].ToString()),
+                    int.Parse(row["InvoiceNumber"].ToString()), row["CustomerName"].ToString(),
+                    row["InvoiceDate"].ToString(), double.Parse(row["InvoiceAmount"].ToString())));
+            }
+            return invoices;
         }
     }
 }
