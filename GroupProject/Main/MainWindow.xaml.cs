@@ -29,7 +29,7 @@ namespace GroupProject
         {
             InitializeComponent();
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-
+            
         }
 
         private void SearchClick(object sender, MouseButtonEventArgs e)
