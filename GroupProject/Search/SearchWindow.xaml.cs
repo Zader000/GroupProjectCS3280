@@ -38,7 +38,8 @@ namespace GroupProject
             Loading(true);
             AllInvoices = SearchLogic.GetInvoices(null, null, null);
             InvoiceNumberCB.ItemsSource = from inv in AllInvoices select inv.InvoiceNumber.ToString();
-            InvoiceAmountCB.ItemsSource = (from inv in AllInvoices select inv.InvoiceAmount.ToString()).Distinct().OrderBy(double.Parse);
+            InvoiceAmountCB.ItemsSource = (from inv in AllInvoices select inv.InvoiceAmount.ToString())
+                .Distinct().OrderBy(double.Parse);
             SearchResultsDataGrid.DataContext = AllInvoices;
             Loading(false);
         }
