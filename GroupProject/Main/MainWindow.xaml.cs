@@ -22,12 +22,12 @@ namespace GroupProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        SearchWindow wndSearch;
-        
+       private SearchWindow wndSearch;
+       private int InvoiceID { get; set; }
+       
         public MainWindow()
         {
             InitializeComponent();
-            wndSearch = new SearchWindow();
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
         }
@@ -36,14 +36,17 @@ namespace GroupProject
         {
             try
             {
-                //this.Hide();              
-                //Unsure why this is working
-                SearchWindow.ShowDialog();
-                this.Show();
+                wndSearch = new SearchWindow();
+                wndSearch.ShowDialog();
+                if (!(wndSearch.DialogResult ?? false))
+                {
+                    return;
+                }
+                InvoiceID = wndSearch.SelectedInvoice.ID;
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+                MessageBox.Show($"{exception.Message}");
             }
         }
 
