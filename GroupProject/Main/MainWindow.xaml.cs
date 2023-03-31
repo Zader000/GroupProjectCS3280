@@ -42,7 +42,7 @@ namespace GroupProject
                 {
                     return;
                 }
-                InvoiceID = wndSearch.SelectedInvoice.ID;
+                InvoiceID = wndSearch.SelectedInvoiceID;
             }
             catch (Exception exception)
             {

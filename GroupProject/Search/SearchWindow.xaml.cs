@@ -16,10 +16,11 @@ namespace GroupProject
     /// </summary>
     public partial class SearchWindow : Window
     {
+
         /// <summary>
-        /// Invoice info to be accessed from other windows
+        /// Invoice ID for the selected invoice to be accessed by other windows
         /// </summary>
-        public Invoice SelectedInvoice { get; private set; }
+        public int SelectedInvoiceID { get; set; }
         
         /// <summary>
         /// Dictionary showing combo box display names to DB table names
@@ -114,7 +115,7 @@ namespace GroupProject
             try
             {
                 DataGridRow row = (DataGridRow)sender;
-                SelectedInvoice = (Invoice)row.Item;
+                SelectedInvoiceID = ((Invoice)row.Item).ID;
                 DialogResult = true;
                 Close();
             }
@@ -161,8 +162,8 @@ namespace GroupProject
         {
             try
             {
-                SelectedInvoice = (Invoice)SearchResultsDataGrid.SelectedItem;
-                if (SelectedInvoice != null)
+                SelectedInvoiceID = ((Invoice)SearchResultsDataGrid.SelectedItem).ID;
+                if (SelectedInvoiceID != 0 && SelectedInvoiceID != null)
                 {
                     DialogResult = true;
                     Close();
