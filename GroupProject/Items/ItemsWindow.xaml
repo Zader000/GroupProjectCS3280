@@ -10,6 +10,11 @@
         <Label Content="Code:" HorizontalAlignment="Left" Margin="91,72,0,0" VerticalAlignment="Top"/>
         <Label Content="Cost:" HorizontalAlignment="Left" Margin="91,103,0,0" VerticalAlignment="Top"/>
         <Label Content="Description:" HorizontalAlignment="Left" Margin="91,147,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnEdit" Content="Edit Item" HorizontalAlignment="Left" Margin="91,342,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button x:Name="btnDelete" Content="Delete Item" HorizontalAlignment="Left" Margin="267,342,0,0" VerticalAlignment="Top" Click="btnDelete_Click"/>
+        <Button x:Name="btnAdd" Content="Add Item" HorizontalAlignment="Center" Margin="0,342,0,0" VerticalAlignment="Top" Click="btnAdd_Click"/>
+        <Button x:Name="btnSave" Content="Save Item" HorizontalAlignment="Left" Margin="176,342,0,0" VerticalAlignment="Top" Click="btnSave_Click"/>
+        <DataGrid x:Name="dataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="373,72,51,240"/>
 
     </Grid>
 </Window>
