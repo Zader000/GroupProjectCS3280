@@ -25,7 +25,7 @@ namespace GroupProject
         {
             InitializeComponent();
             _logic.LoadItemsFromDatabase();
-            dataGrid.ItemsSource = _logic.Items;
+            //dataGrid.ItemsSource = _logic.Items;
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
