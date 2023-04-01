@@ -9,7 +9,9 @@
     <Grid>
         <TabControl Margin="0,0,370,217">
             <TabItem x:Name="SearchTab" Header="Search" MouseLeftButtonDown="SearchClick">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="GoToSearchWindow" Content="SearchWindow" HorizontalAlignment="Left" Margin="147,0,0,0" VerticalAlignment="Center" Height="58" Width="91" Click="GoToSearch"/>
+                </Grid>
             </TabItem>
             <TabItem x:Name="EditTab" Header="EditItems">
                 <Grid Background="#FFE5E5E5">
@@ -43,6 +45,7 @@
         <ComboBox HorizontalAlignment="Left" Margin="482,29,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem Content="Item #1"/>
         </ComboBox>
-        <Button x:Name="GoToItems" Content="ItemsWindow" HorizontalAlignment="Left" Margin="33,245,0,0" VerticalAlignment="Top" Height="36" Width="92" Click="GoToItems"/>
+        <Button x:Name="ItemsWindowOpen" HorizontalAlignment="Left" Margin="77,311,0,0" VerticalAlignment="Top" Height="44" Width="89" Click="OpenItems" Content="ItemsWindow">
+        </Button>
     </Grid>
 </Window>

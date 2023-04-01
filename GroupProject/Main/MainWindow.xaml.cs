@@ -51,7 +51,26 @@ namespace GroupProject
             }
         }
 
-        private void GoToItems(object sender, RoutedEventArgs e)
+   
+        private void GoToSearch(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                wndSearch = new SearchWindow();
+                wndSearch.ShowDialog();
+                if (!(wndSearch.DialogResult ?? false))
+                {
+                    return;
+                }
+                InvoiceID = wndSearch.SelectedInvoiceID;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"{exception.Message}");
+            }
+        }
+
+        private void OpenItems(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -61,13 +80,12 @@ namespace GroupProject
                 {
                     return;
                 }
-               
+
             }
             catch (Exception exception)
             {
                 MessageBox.Show($"{exception.Message}");
             }
-            
         }
 
         //After search window is closed, check property SelectedInvoiceId in the Search window to see if an invoice is selected. If so load invoice.
