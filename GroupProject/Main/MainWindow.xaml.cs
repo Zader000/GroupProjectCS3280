@@ -1,4 +1,4 @@
-﻿using GroupProject.Data;
+using GroupProject.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +22,15 @@ namespace GroupProject
     /// </summary>
     public partial class MainWindow : Window
     {
-       private SearchWindow wndSearch;
-       private int InvoiceID { get; set; }
-       
+        private SearchWindow wndSearch;
+        private ItemsWindow wndItem;
+        private int InvoiceID { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-            
+
         }
 
         private void SearchClick(object sender, MouseButtonEventArgs e)
@@ -50,7 +51,24 @@ namespace GroupProject
             }
         }
 
-      
+        private void GoToItems(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                wndItem = new ItemsWindow();
+                wndItem.ShowDialog();
+                if (!(wndItem.DialogResult ?? false))
+                {
+                    return;
+                }
+               
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"{exception.Message}");
+            }
+            
+        }
 
         //After search window is closed, check property SelectedInvoiceId in the Search window to see if an invoice is selected. If so load invoice.
 

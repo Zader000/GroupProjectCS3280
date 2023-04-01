@@ -1,4 +1,4 @@
-﻿<Window x:Class="GroupProject.MainWindow"
+<Window x:Class="GroupProject.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -43,5 +43,6 @@
         <ComboBox HorizontalAlignment="Left" Margin="482,29,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem Content="Item #1"/>
         </ComboBox>
+        <Button x:Name="GoToItems" Content="ItemsWindow" HorizontalAlignment="Left" Margin="33,245,0,0" VerticalAlignment="Top" Height="36" Width="92" Click="GoToItems"/>
     </Grid>
 </Window>
