@@ -18,9 +18,9 @@ namespace GroupProject
     {
 
         /// <summary>
-        /// Invoice ID for the selected invoice to be accessed by other windows
+        /// Invoice ID for the selected invoice to be accessed by the Main Window
         /// </summary>
-        public int SelectedInvoiceID { get; set; }
+        public int SelectedInvoiceID { get; private set; }
         
         /// <summary>
         /// Dictionary showing combo box display names to DB table names
