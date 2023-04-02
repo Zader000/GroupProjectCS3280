@@ -13,6 +13,8 @@ namespace GroupProject.Items
     public class clsItemsSQL
     {
         private string sConnectionString;
+            
+        //todo remove this already exists in clsDataAccess
         public clsItemsSQL()
         {
             sConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data source= " + Directory.GetCurrentDirectory() + "\\DB.accdb";
@@ -42,6 +44,7 @@ namespace GroupProject.Items
             return $"DELETE FROM ItemDesc Where ItemCode = '{ItemCode}'";
         }
 
+        // todo remove this already exists in clsDataAccess
         public DataSet ExecuteSQLStatement(string sSQL, ref int iRetVal)
         {
             try
