@@ -10,9 +10,11 @@ using System.Data;
 namespace GroupProject.Data
 {
    
-    internal class clsDataAccess
+    public class clsDataAccess
     {
         private const string _connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=../../../Data/DB.accdb";
+
+        
 
         /// <summary>
         /// 
@@ -21,6 +23,7 @@ namespace GroupProject.Data
         /// <returns></returns>
         public DataSet ExecuteQuery(string stmt)
         {
+            //_items = new ItemsWindow();
             try
             {
                 DataSet ds = new DataSet();

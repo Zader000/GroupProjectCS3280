@@ -44,33 +44,8 @@ namespace GroupProject.Items
             return $"DELETE FROM ItemDesc Where ItemCode = '{ItemCode}'";
         }
 
-        // todo remove this already exists in clsDataAccess
-        public DataSet ExecuteSQLStatement(string sSQL, ref int iRetVal)
-        {
-            try
-            {
-                DataSet ds = new DataSet();
-                using (OleDbConnection conn = new OleDbConnection(sConnectionString))
-                {
-                    using (OleDbDataAdapter adapter = new OleDbDataAdapter())
-                    {
-                        conn.Open();
+        
 
-                        adapter.SelectCommand = new OleDbCommand(sSQL, conn);
-                        adapter.SelectCommand.CommandTimeout = 0;
 
-                        adapter.Fill(ds);
-                    }
-                }
-
-                iRetVal = ds.Tables[0].Rows.Count;
-
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
-            }
-        }
     }
 }
