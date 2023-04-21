@@ -74,7 +74,7 @@ namespace GroupProject
             }
             else
             {
-                _logic.UpdateItem(code, desc, cost);
+                _logic.UpdateItem(desc, cost, code);
                 lblDisplay.Content = "Item added to database.";
             }
         }

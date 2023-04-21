@@ -49,10 +49,24 @@ namespace GroupProject.Data
         /// </summary>
         /// <param name="stmt"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public int ExecuteNonQuery(string stmt)
         {
-            throw new NotImplementedException();
+            //executes non query
+            try
+            {
+                using OleDbConnection conn = new OleDbConnection(_connectionString);
+                using OleDbCommand cmd = new OleDbCommand(stmt, conn);
+                conn.Open();
+                int rowsAffected = cmd.ExecuteNonQuery();
+                conn.Close();
+                return rowsAffected;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                MessageBox.Show(e.StackTrace);
+                throw;
+            }
         }
     }
 }
