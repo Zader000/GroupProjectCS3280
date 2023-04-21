@@ -33,14 +33,12 @@ namespace GroupProject.Items
             
         }
 
-        public void AddItem(string ItemDesc, string Cost, string ItemCode)
+        public void AddItem(string ItemCode, string ItemDesc, string Cost)
         {
             // TODO: Implement code to add a new item to the database and _items
             //items.Add(newItem);
-            /*ItemDesc = components.txtDesc.Text;
-            Cost = components.txtCost.Text;
-            ItemCode = components.txtCode.Text;*/
-            data.ExecuteQuery(clsItemsSQL.insertDesc(ItemDesc, Cost, ItemCode));
+            
+            data.ExecuteQuery(clsItemsSQL.insertDesc(ItemCode, ItemDesc, Cost));
             
         }
 
@@ -49,16 +47,7 @@ namespace GroupProject.Items
         public void UpdateItem(string ItemDesc, string Cost, string ItemCode)
         {
             // TODO: Implement code to update an item in the database and _items
-            /*int index = items.IndexOf(itemToEdit);
-
-            if(index != -1)
-            {
-                items[index] = updatedItem;
-            }
-            else
-            {
-                throw new ArgumentException("Item does not exist in list.");
-            }*/
+            
             data.ExecuteNonQuery(clsItemsSQL.updateDesc(ItemDesc, Cost, ItemCode));
 
         }
@@ -66,12 +55,7 @@ namespace GroupProject.Items
         public void DeleteItem(string ItemCode)
         {
             // TODO: Implement code to delete an item from the database and _items
-            /*bool success = items.Remove(itemToDelete);
-
-            if (!success)
-            {
-                throw new ArgumentException("Item does not exist in list.");
-            }*/
+            
             data.ExecuteQuery(clsItemsSQL.deleteDesc(ItemCode));
         }
 

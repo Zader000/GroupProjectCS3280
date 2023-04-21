@@ -76,6 +76,7 @@ namespace GroupProject
             {
                 _logic.UpdateItem(desc, cost, code);
                 lblDisplay.Content = "Item added to database.";
+                RefreshDataGrid();
             }
         }
 
@@ -85,18 +86,7 @@ namespace GroupProject
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             //make use of business logic functions to allow user to delete the items.
-            /*var selectedItem = dataGrid.SelectedItem as Item;
-
-            if (selectedItem != null)
-            {
-                MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this item?", "Confirmation", MessageBoxButton.YesNo);
-
-                if (result == MessageBoxResult.Yes)
-                {
-                    _logic.DeleteItem(selectedItem);
-                    RefreshDataGrid();
-                }
-            }*/
+            
             code = txtCode.Text;
             cost = txtCost.Text;
             desc = txtDesc.Text;
@@ -110,23 +100,13 @@ namespace GroupProject
             {
                 _logic.DeleteItem(code);
                 lblDisplay.Content = "Item deleted from database.";
+                RefreshDataGrid();
             }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            /*code = txtCode.Text;
-            cost = txtCost.Text;
-            desc = txtDesc.Text;
-            //make use of business logic functions to allow user to add the items.
-            AddEditItemWindow addEditItemWindow = new AddEditItemWindow();
-            addEditItemWindow.Owner = this;
-
-            if (addEditItemWindow.ShowDialog() == true)
-            {
-                _logic.AddItem(addEditItemWindow.Item);
-                RefreshDataGrid();
-            }*/
+            
             code = txtCode.Text;
             cost = txtCost.Text;
             desc = txtDesc.Text;
@@ -137,8 +117,9 @@ namespace GroupProject
             }
             else
             {
-                _logic.AddItem(desc, cost, code);
+                _logic.AddItem(code, desc, cost);
                 lblDisplay.Content = "Item added to database.";
+                RefreshDataGrid();
             }
         }
     }

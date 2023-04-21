@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GroupProject"
         mc:Ignorable="d"
-        Title="ItemsWindow" Height="450" Width="800">
+        Title="ItemsWindow" Height="450" Width="800" Background="#333">
     <Grid>
-        <Label Content="Code:" HorizontalAlignment="Left" Margin="91,72,0,0" VerticalAlignment="Top"/>
-        <Label Content="Cost:" HorizontalAlignment="Left" Margin="91,103,0,0" VerticalAlignment="Top"/>
-        <Label Content="Description:" HorizontalAlignment="Left" Margin="91,147,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnEdit" Content="Edit Item" HorizontalAlignment="Left" Margin="91,342,0,0" VerticalAlignment="Top" Click="btnEdit_Click"/>
-        <Button x:Name="btnDelete" Content="Delete Item" HorizontalAlignment="Left" Margin="180,342,0,0" VerticalAlignment="Top" Click="btnDelete_Click"/>
-        <Button x:Name="btnAdd" Content="Add Item" HorizontalAlignment="Left" Margin="285,342,0,0" VerticalAlignment="Top" Click="btnAdd_Click"/>
+
+        <Label Content="Code:" Foreground="White" HorizontalAlignment="Left" Margin="91,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="Cost:" Foreground="White" HorizontalAlignment="Left" Margin="91,103,0,0" VerticalAlignment="Top"/>
+        <Label Content="Description:" Foreground="White" HorizontalAlignment="Left" Margin="91,147,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnEdit" Content="Edit Item" HorizontalAlignment="Left" Margin="91,342,0,0" VerticalAlignment="Top" Click="btnEdit_Click" Foreground="White" Background="Gray"/>
+        <Button x:Name="btnDelete" Content="Delete Item" HorizontalAlignment="Left" Margin="180,342,0,0" VerticalAlignment="Top" Click="btnDelete_Click" Foreground="White" Background="Firebrick"/>
+        <Button x:Name="btnAdd" Content="Add Item" HorizontalAlignment="Left" Margin="285,342,0,0" VerticalAlignment="Top" Click="btnAdd_Click" Foreground="White" Background="ForestGreen"/>
         <DataGrid x:Name="dataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="373,72,51,240"/>
         <TextBox x:Name="txtCode" HorizontalAlignment="Left" Margin="180,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtCost" HorizontalAlignment="Left" Margin="180,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -20,6 +21,7 @@
         <Label x:Name="lblDisplay" Content="" HorizontalAlignment="Left" Margin="77,222,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="36" Width="332">
 
         </Label>
+        <Label Content="Edit Items " HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="53" Width="800" FontSize="22" Background="RoyalBlue" Foreground="White"/>
 
     </Grid>
 </Window>
