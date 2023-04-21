@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace GroupProject.Items
 {
@@ -31,7 +32,7 @@ namespace GroupProject.Items
 
         public static string updateDesc(string ItemDesc, string Cost, string ItemCode)
         {
-            return $"UPDATE ItemDesc SET ItemDesc = {ItemDesc}, COST = {Cost} WHERE ItemCode = '{ItemCode}'";
+            return $"UPDATE ItemDesc SET ItemDesc = '{ItemDesc}', Cost = {Cost} WHERE ItemCode = '{ItemCode}'";
         }
 
         public static string insertDesc(string ItemCode, string ItemDesc, string Cost)

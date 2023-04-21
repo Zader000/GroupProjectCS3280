@@ -59,7 +59,7 @@ namespace GroupProject.Items
             {
                 throw new ArgumentException("Item does not exist in list.");
             }*/
-            data.ExecuteQuery(clsItemsSQL.updateDesc(ItemCode, ItemDesc, Cost));
+            data.ExecuteNonQuery(clsItemsSQL.updateDesc(ItemDesc, Cost, ItemCode));
 
         }
 
