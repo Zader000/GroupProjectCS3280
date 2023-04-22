@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GroupProject.Main;
 
 namespace GroupProject
 {
@@ -24,12 +25,17 @@ namespace GroupProject
     {
         private SearchWindow wndSearch;
         private ItemsWindow wndItem;
+        private MainLogic _logic;
+
         private int InvoiceID { get; set; }
+        
+        private Invoice SelectedInvoice { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
+            _logic = new MainLogic();
 
         }
 
@@ -37,13 +43,7 @@ namespace GroupProject
         {
             try
             {
-                wndSearch = new SearchWindow();
-                wndSearch.ShowDialog();
-                if (!(wndSearch.DialogResult ?? false))
-                {
-                    return;
-                }
-                InvoiceID = wndSearch.SelectedInvoiceID;
+                OpenSearchWindow();
             }
             catch (Exception exception)
             {
@@ -56,13 +56,31 @@ namespace GroupProject
         {
             try
             {
+                OpenSearchWindow();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"{exception.Message}");
+            }
+        }
+
+        private void OpenSearchWindow()
+        {
+            try
+            {
                 wndSearch = new SearchWindow();
                 wndSearch.ShowDialog();
+                
                 if (!(wndSearch.DialogResult ?? false))
-                {
                     return;
-                }
+                // Get the invoice ID from the search window
                 InvoiceID = wndSearch.SelectedInvoiceID;
+                // Get the invoice from the database
+                SelectedInvoice = _logic.GetInvoiceById(InvoiceID);
+                // Set the invoice in the data grid
+                InvoiceDataGrid.ItemsSource = null;
+                InvoiceDataGrid.ItemsSource = new List<Invoice> { SelectedInvoice };
+                
             }
             catch (Exception exception)
             {

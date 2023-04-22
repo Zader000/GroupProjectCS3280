@@ -27,17 +27,9 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="359,236,23,25">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" Width="70" DisplayMemberBinding="{Binding from}" />
-                    <GridViewColumn Header="Invoice" Width="70" DisplayMemberBinding="{Binding from}" />
-                    <GridViewColumn Header="Customer" Width="70" DisplayMemberBinding="{Binding from}" />
-                    <GridViewColumn Header="Date Invoiced" Width="70" DisplayMemberBinding="{Binding from}" />
-                    <GridViewColumn Header="Invoice Amount" Width="100" DisplayMemberBinding="{Binding from}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Margin="359,236,23,25" Name="InvoiceDataGrid">
+            
+        </DataGrid>
         <Label x:Name="ItemsLabel" Content="Items:" HorizontalAlignment="Left" Margin="435,27,0,0" VerticalAlignment="Top"/>
         <Label x:Name="CostLabel" Content="Cost:" HorizontalAlignment="Left" Margin="638,25,0,0" VerticalAlignment="Top"/>
         <Button x:Name="AddButton" Content="Add Item" HorizontalAlignment="Left" Margin="630,80,0,0" VerticalAlignment="Top"/>

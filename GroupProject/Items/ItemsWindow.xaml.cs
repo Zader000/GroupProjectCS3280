@@ -81,8 +81,6 @@ namespace GroupProject
         }
 
 
-        
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             //make use of business logic functions to allow user to delete the items.

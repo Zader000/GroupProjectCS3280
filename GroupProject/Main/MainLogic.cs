@@ -1,16 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using GroupProject.Data;
 
 namespace GroupProject.Main
 {
-    class MainLogic
+    public class MainLogic
     {
+        private readonly clsDataAccess _dataAccess;
+        
+        public MainLogic()
+        {
+            _dataAccess = new clsDataAccess();
+        }
         //GetAllItems return List<clsItem>
         //SaveNewInvoice(clsInvoice)
         //EditInvoice(clsOldInvoice, clsNewInvoice)
         //GetInvoice(InvoiceNumber) returns clsInvoice - Get the invoice and items for the selected invoice from search window
+        
+        
+        public Invoice GetInvoiceById(int invoiceId)
+        {
+            // Get the invoice from the database
+            DataSet ds = _dataAccess.ExecuteQuery(MainSql.GetInvoiceByIdQuery(invoiceId));
+           
+            // Check if the query returned any data
+            if (ds.Tables.Count == 0)
+            {
+                MessageBox.Show("No invoice found");
+            }
+            if (ds.Tables[0].Rows.Count == 0)
+            {
+                MessageBox.Show("No invoice found");
+            }
+            // Get the invoice data
+            int id = ds.Tables[0].Rows[0].Field<int>("ID");
+            int invoiceNumber = ds.Tables[0].Rows[0].Field<int>("InvoiceNumber");
+            string customerName = ds.Tables[0].Rows[0].Field<string>("CustomerName") ?? "";
+            // Convert the date to a string
+            string invoiceDate = ds.Tables[0].Rows[0].Field<DateTime>("InvoiceDate").ToString();
+            // Convert the decimal to a double
+            double invoiceAmount = (double)ds.Tables[0].Rows[0].Field<Decimal>("InvoiceAmount");
+
+            // Return the invoice
+            return new Invoice(id, invoiceNumber, customerName, invoiceDate, invoiceAmount);
+        }
     }
 }

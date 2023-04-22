@@ -11,6 +11,12 @@ namespace GroupProject.Main
     /// </summary>
     public static class MainSql
     {
+        
+        public static string GetInvoiceByIdQuery(int id)
+        {
+            return $"select * from Invoice where ID = {id};";
+        }
+        
         public static string GetInvoiceByInvoiceNumberQuery(string invNumber)
         {
             return $"select * from Invoice where InvoiceNumber = {invNumber};";
