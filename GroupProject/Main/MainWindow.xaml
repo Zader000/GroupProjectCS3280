@@ -6,11 +6,17 @@
         xmlns:local="clr-namespace:GroupProject"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <TabControl Margin="0,0,370,217">
+    <Grid Background="#FF333333">
+        <TabControl Margin="0,0,370,217" Name="MainTabControl">
             <TabItem x:Name="SearchTab" Header="Search" MouseLeftButtonDown="SearchClick">
-                <Grid Background="#FFE5E5E5">
-                    <Button x:Name="GoToSearchWindow" Content="SearchWindow" HorizontalAlignment="Left" Margin="147,0,0,0" VerticalAlignment="Center" Height="58" Width="91" Click="GoToSearch"/>
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF0F0F0"/>
+                        <GradientStop Color="#FF1A1A1A" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Background="#FF1A1A1A">
+                    <Button x:Name="GoToSearchWindow" Content="SearchWindow" HorizontalAlignment="Left" Margin="147,0,0,0" VerticalAlignment="Center" Height="58" Width="91" Click="GoToSearch" Background="RoyalBlue" Foreground="White"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="EditTab" Header="EditItems">
@@ -29,29 +35,29 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Label x:Name="ItemsLabel" Content="Items:" HorizontalAlignment="Left" Margin="435,27,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="CostLabel" Content="Cost:" HorizontalAlignment="Left" Margin="613,25,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="AddButton" Content="Add Invoice" HorizontalAlignment="Left" Margin="466,154,0,0" VerticalAlignment="Top" Click="AddInvoice"/>
-        <Button x:Name="RemoveButton" Content="Remove Invoice" HorizontalAlignment="Left" Margin="501,248,0,0" VerticalAlignment="Top" Click="DeleteInvoice"/>
+        <Label x:Name="ItemsLabel" Content="Items:" HorizontalAlignment="Left" Margin="435,27,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFD"/>
+        <Label x:Name="CostLabel" Content="Cost:" HorizontalAlignment="Left" Margin="613,25,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Button x:Name="AddButton" Content="Add Invoice" HorizontalAlignment="Left" Margin="466,154,0,0" VerticalAlignment="Top" Click="AddInvoice" Foreground="White" Background="RoyalBlue"/>
+        <Button x:Name="RemoveButton" Content="Remove Invoice" HorizontalAlignment="Left" Margin="501,248,0,0" VerticalAlignment="Top" Click="DeleteInvoice" Background="Red" Foreground="White"/>
         <ComboBox HorizontalAlignment="Left" Margin="482,29,0,0" VerticalAlignment="Top" Width="120" Name="ItemsComboBox" SelectionChanged="ItemsComboBox_OnSelectionChanged">
         </ComboBox>
-        <Button x:Name="ItemsWindowOpen" HorizontalAlignment="Left" Margin="568,310,0,0" VerticalAlignment="Top" Height="44" Width="89" Click="OpenItems" Content="ItemsWindow">
+        <Button x:Name="ItemsWindowOpen" HorizontalAlignment="Left" Margin="605,337,0,0" VerticalAlignment="Top" Height="44" Width="89" Click="OpenItems" Content="ItemsWindow" Foreground="White" Background="RoyalBlue">
         </Button>
         <TextBox x:Name="CustomerText" HorizontalAlignment="Left" Margin="634,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="DateText" HorizontalAlignment="Left" Margin="634,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="AmountText" HorizontalAlignment="Left" Margin="634,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="CustomerLabel" Content="Customer:" HorizontalAlignment="Left" Margin="543,141,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="DateLabel" Content="Date:" HorizontalAlignment="Left" Margin="556,164,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="AmountLabel" Content="Amount:" HorizontalAlignment="Left" Margin="547,183,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="ErrorLabel" Content="" HorizontalAlignment="Left" Margin="483,56,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Description" Content="Add Invoice Information" HorizontalAlignment="Left" Margin="575,83,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label x:Name="NumberLabel" Content="Invoice Number:" HorizontalAlignment="Left" Margin="526,114,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="CustomerLabel" Content="Customer:" HorizontalAlignment="Left" Margin="543,141,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="DateLabel" Content="Date:" HorizontalAlignment="Left" Margin="556,164,0,0" VerticalAlignment="Top" Foreground="#FFFFFDFD"/>
+        <Label x:Name="AmountLabel" Content="Amount:" HorizontalAlignment="Left" Margin="547,183,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="ErrorLabel" Content="" HorizontalAlignment="Left" Margin="468,1,0,0" VerticalAlignment="Top" Foreground="#FFFFF6F6"/>
+        <Label x:Name="Description" Content="Add Invoice Information" HorizontalAlignment="Left" Margin="575,83,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
+        <Label x:Name="NumberLabel" Content="Invoice Number:" HorizontalAlignment="Left" Margin="526,114,0,0" VerticalAlignment="Top" Foreground="White"/>
         <TextBox x:Name="InvoiceNumText" HorizontalAlignment="Left" Margin="634,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="DeleteInvoiceLabel" Content="Select Invoice Number to Delete" HorizontalAlignment="Left" Margin="568,217,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="DeleteInvoiceLabel" Content="Select Invoice Number to Delete" HorizontalAlignment="Left" Margin="568,217,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFFFFDFD"/>
         <TextBox x:Name="DeleteText" HorizontalAlignment="Left" Margin="634,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="ReadOnly" HorizontalAlignment="Left" Margin="649,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <DataGrid x:Name="ItemDataGrid" d:Name = "Item List" Margin="10,293,322,10"/>
-        <Button x:Name="AddItemButton" Content="Add Item" HorizontalAlignment="Left" Margin="591,59,0,0" VerticalAlignment="Top" Click="AddComboBoxItem"/>
-        <Button x:Name="DeleteItemButton" Content="Delete Item" HorizontalAlignment="Left" Margin="664,59,0,0" VerticalAlignment="Top" Click="DeleteComboItem"/>
+        <DataGrid x:Name="ItemDataGrid" d:Name = "Item List" Margin="10,293,322,10" Foreground="White" Background="#FF1A1A1A"/>
+        <Button x:Name="AddItemButton" Content="Add Item" HorizontalAlignment="Left" Margin="591,59,0,0" VerticalAlignment="Top" Click="AddComboBoxItem" Background="RoyalBlue" Foreground="White"/>
+        <Button x:Name="DeleteItemButton" Content="Delete Item" HorizontalAlignment="Left" Margin="664,59,0,0" VerticalAlignment="Top" Click="DeleteComboItem" Foreground="White" Background="#FFF30F0F"/>
     </Grid>
 </Window>

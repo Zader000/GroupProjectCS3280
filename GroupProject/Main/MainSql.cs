@@ -94,6 +94,12 @@ namespace GroupProject.Main
         {
             return $"SELECT * FROM Invoice WHERE ID = {invoiceID};";
         }
+
+        public static string MostRecentlyAddedInvoiceQuery()
+        {
+            return "select top 1 * from Invoice order by ID desc";
+        }
+        
 } 
 }
 //Examples of SQL statements needed for future use
