@@ -31,7 +31,7 @@
         </TabControl>
         <Label x:Name="ItemsLabel" Content="Items:" HorizontalAlignment="Left" Margin="435,27,0,0" VerticalAlignment="Top"/>
         <Label x:Name="CostLabel" Content="Cost:" HorizontalAlignment="Left" Margin="613,25,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="AddButton" Content="Add Invoice" HorizontalAlignment="Left" Margin="466,154,0,0" VerticalAlignment="Top" Click="addInvoice"/>
+        <Button x:Name="AddButton" Content="Add Invoice" HorizontalAlignment="Left" Margin="466,154,0,0" VerticalAlignment="Top" Click="AddInvoice"/>
         <Button x:Name="RemoveButton" Content="Remove Invoice" HorizontalAlignment="Left" Margin="501,248,0,0" VerticalAlignment="Top" Click="DeleteInvoice"/>
         <ComboBox HorizontalAlignment="Left" Margin="482,29,0,0" VerticalAlignment="Top" Width="120" Name="ItemsComboBox" SelectionChanged="ItemsComboBox_OnSelectionChanged">
         </ComboBox>

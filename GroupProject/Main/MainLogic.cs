@@ -80,25 +80,25 @@ namespace GroupProject.Main
         /// <param name="invoiceAmount"></param>
         public void UpdateInvoiceAmount(int invoiceNumber, double invoiceAmount)
         {
-            // Create the query
             string query = MainSql.UpdateInvoiceAmountStatement(invoiceNumber, invoiceAmount);
-            // Execute the query
             _dataAccess.ExecuteNonQuery(query);
         }
 
         public void InsertInvoices(int invoiceNumber, string customerName, string invoiceDate, double invoiceAmount) 
         {
-            // Create the query
             string query = MainSql.InsertInvoice(invoiceNumber, customerName, invoiceDate, invoiceAmount);
-            // Execute the query
+            _dataAccess.ExecuteNonQuery(query);
+        }
+        
+        public void InsertInvoiceLineItems(int invoiceNum, int LineItemNum, string ItemCode) 
+        {
+            string query = MainSql.InsertLineItems(invoiceNum, LineItemNum, ItemCode);
             _dataAccess.ExecuteNonQuery(query);
         }
 
         public void Delete(int num) 
         {
-            // Create the query
             string query = MainSql.Delete(num);
-            // Execute the query
             _dataAccess.ExecuteNonQuery(query);
         }
     }

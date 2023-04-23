@@ -30,14 +30,14 @@ namespace GroupProject.Main
             return $"UPDATE Invoice SET InvoiceAmount = {invoiceAmount} where InvoiceNumber = {invoiceNumber}";
         }
 
-
+        
         /// <summary>
         /// Makes an insert into the lineitems based on num, lineitem and itemcode
         /// </summary>
         /// <returns></returns>
-        public static string InsertLineItems(int num, int LineItem, string ItemCode)
+        public static string InsertLineItems(int invoiceNum, int LineItemNum, string ItemCode)
         {
-            return $"INSERT INTO LineItems(InvoiceNum, LineItemNum, ItemCode) Values({num}, {LineItem}, {ItemCode});";
+            return $"INSERT INTO LineItems(InvoiceNum, LineItemNum, ItemCode) Values({invoiceNum}, {LineItemNum}, '{ItemCode}');";
         }
 
         /// <summary>

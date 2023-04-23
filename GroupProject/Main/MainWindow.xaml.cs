@@ -115,7 +115,7 @@ namespace GroupProject
             }
         }
 
-        private void addInvoice(object sender, RoutedEventArgs e)
+        private void AddInvoice(object sender, RoutedEventArgs e)
         {
             if (InvoiceNumText.Text == "" || CustomerText.Text == "" || AmountText.Text == "" || DateText.Text == "")
             {
@@ -125,7 +125,18 @@ namespace GroupProject
 
             ErrorLabel.Content = "";
             _logic.InsertInvoices(Int32.Parse(InvoiceNumText.Text), CustomerText.Text, DateText.Text, Double.Parse(AmountText.Text));
-
+            int i = 1;
+            foreach (Item item in InvoiceItems)
+            {
+                _logic.InsertInvoiceLineItems(Int32.Parse(InvoiceNumText.Text), i, item.Code);
+                i++;
+            }
+            InvoiceNumText.Text = "";
+            CustomerText.Text = "";
+            AmountText.Text = "";
+            DateText.Text = "";
+            InvoiceItems.Clear();
+            ItemDataGrid.ItemsSource = null;
         }
 
         private void EditInvoice(object sender, RoutedEventArgs e)
