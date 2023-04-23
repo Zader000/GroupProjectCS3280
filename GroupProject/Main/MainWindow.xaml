@@ -52,5 +52,6 @@
         <TextBox x:Name="ReadOnly" HorizontalAlignment="Left" Margin="649,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <DataGrid x:Name="ItemDataGrid" d:Name = "Item List" Margin="10,293,322,10"/>
         <Button x:Name="AddItemButton" Content="Add Item" HorizontalAlignment="Left" Margin="591,59,0,0" VerticalAlignment="Top" Click="AddComboBoxItem"/>
+        <Button x:Name="DeleteItemButton" Content="Delete Item" HorizontalAlignment="Left" Margin="664,59,0,0" VerticalAlignment="Top" Click="DeleteComboItem"/>
     </Grid>
 </Window>
