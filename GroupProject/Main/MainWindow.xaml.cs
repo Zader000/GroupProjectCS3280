@@ -179,6 +179,7 @@ namespace GroupProject
                 return;
             }
             ErrorLabel.Content = "";
+            InvoiceItems.Add(SelectedItem);
             ItemDataGrid.ItemsSource = null;
             ItemDataGrid.ItemsSource = InvoiceItems;
 

@@ -50,7 +50,7 @@
         <Label x:Name="DeleteInvoiceLabel" Content="Select Invoice Number to Delete" HorizontalAlignment="Left" Margin="568,217,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox x:Name="DeleteText" HorizontalAlignment="Left" Margin="634,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="ReadOnly" HorizontalAlignment="Left" Margin="649,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        <DataGrid x:Name="ItemDataGrid" d:Name = "Item List" ItemsSource="{d:SampleData ItemCount=5}" Margin="10,293,322,10"/>
+        <DataGrid x:Name="ItemDataGrid" d:Name = "Item List" Margin="10,293,322,10"/>
         <Button x:Name="AddItemButton" Content="Add Item" HorizontalAlignment="Left" Margin="591,59,0,0" VerticalAlignment="Top" Click="AddComboBoxItem"/>
     </Grid>
 </Window>
