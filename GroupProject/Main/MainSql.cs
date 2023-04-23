@@ -46,9 +46,9 @@ namespace GroupProject.Main
         /// <param name="Date"></param>
         /// <param name="Cost"></param>
         /// <returns></returns>
-        public static string InsertInvoices(string Date, double Cost)
+        public static string InsertInvoice(int invoiceNumber, string customerName, string invoiceDate, double invoiceAmount)
         {
-            return $"INSERT INTO Invoice(InvoiceDate, TotalCost) Values({Date}, {Cost});";
+            return $"INSERT INTO Invoice(InvoiceNumber, CustomerName, InvoiceDate, InvoiceAmount) VALUES({invoiceNumber}, '{customerName}', #{invoiceDate}#, {invoiceAmount});";
         }
 
         /// <summary>
@@ -90,7 +90,11 @@ namespace GroupProject.Main
             return $"DELETE FROM LineItems WHERE InvoiceNum = {num};";
         }
        
-    }
+        public static string GetInvoiceByIdQuery(int invoiceID)
+        {
+            return $"SELECT * FROM Invoice WHERE ID = {invoiceID};";
+        }
+} 
 }
 //Examples of SQL statements needed for future use
 /*
