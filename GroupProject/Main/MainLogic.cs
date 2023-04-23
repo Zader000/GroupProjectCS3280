@@ -49,5 +49,13 @@ namespace GroupProject.Main
             // Return the invoice
             return new Invoice(id, invoiceNumber, customerName, invoiceDate, invoiceAmount);
         }
+        
+        public void UpdateInvoiceAmount(int invoiceNumber, double invoiceAmount)
+        {
+            // Create the query
+            string query = MainSql.UpdateInvoiceAmountStatement(invoiceNumber, invoiceAmount);
+            // Execute the query
+            _dataAccess.ExecuteNonQuery(query);
+        }
     }
 }
