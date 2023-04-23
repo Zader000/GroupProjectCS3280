@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TabControl Margin="0,0,370,217">
+        <TabControl Margin="0,0,370,217" Name="MainTabControl">
             <TabItem x:Name="SearchTab" Header="Search" MouseLeftButtonDown="SearchClick">
                 <Grid Background="#FFE5E5E5">
                     <Button x:Name="GoToSearchWindow" Content="SearchWindow" HorizontalAlignment="Left" Margin="147,0,0,0" VerticalAlignment="Center" Height="58" Width="91" Click="GoToSearch"/>

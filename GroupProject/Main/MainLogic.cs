@@ -101,5 +101,29 @@ namespace GroupProject.Main
             string query = MainSql.Delete(num);
             _dataAccess.ExecuteNonQuery(query);
         }
+
+        public Invoice GetMostRecentlyAddedInvoice()
+        {
+            DataSet ds = _dataAccess.ExecuteQuery(MainSql.MostRecentlyAddedInvoiceQuery());
+            
+            if (ds.Tables.Count == 0)
+            {
+                MessageBox.Show("No invoice found");
+            }
+            if (ds.Tables[0].Rows.Count == 0)
+            {
+                MessageBox.Show("No invoice found");
+            }
+
+            int id = ds.Tables[0].Rows[0].Field<int>("ID");
+            int invoiceNumber = ds.Tables[0].Rows[0].Field<int>("InvoiceNumber");
+            string customerName = ds.Tables[0].Rows[0].Field<string>("CustomerName") ?? "";
+            string invoiceDate = ds.Tables[0].Rows[0].Field<DateTime>("InvoiceDate").ToString();
+            double invoiceAmount = (double)ds.Tables[0].Rows[0].Field<Decimal>("InvoiceAmount");
+
+            // Return the invoice
+            return new Invoice(id, invoiceNumber, customerName, invoiceDate, invoiceAmount);
+        }
+        
     }
 }
