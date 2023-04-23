@@ -106,19 +106,20 @@ namespace GroupProject
 
         private void addInvoice(object sender, RoutedEventArgs e)
         {
-            if (InvoiceText.Text == "" || CustomerText.Text == "" || AmountText.Text == "" || DateText.Text == "") 
+            if (InvoiceNumText.Text == "" || CustomerText.Text == "" || AmountText.Text == "" || DateText.Text == "")
             {
                 ErrorLabel.Content = "Error! Invoice fields must all be filled out!";
                 return;
             }
 
             ErrorLabel.Content = "";
+            _logic.InsertInvoices(Int32.Parse(InvoiceNumText.Text), CustomerText.Text, DateText.Text, Double.Parse(AmountText.Text));
 
         }
 
         private void EditInvoice(object sender, RoutedEventArgs e)
         {
-            if (EditAmount.Text == "" || EditNumber.Text == "") 
+            if (EditAmount.Text == "" || EditNumber.Text == "")
             {
                 ErrorLabel.Content = "Error! Number and amount must be filled in!";
                 return;
@@ -126,6 +127,18 @@ namespace GroupProject
             ErrorLabel.Content = "";
 
             _logic.UpdateInvoiceAmount(Int32.Parse(EditNumber.Text), Double.Parse(EditAmount.Text));
+        }
+
+        private void DeleteInvoice(object sender, RoutedEventArgs e)
+        {
+            if (DeleteText.Text == "") 
+            {
+                ErrorLabel.Content = "Error! You must first enter an invoice number!";
+                return;
+            }
+            ErrorLabel.Content = "";
+
+            _logic.Delete(Int32.Parse(DeleteText.Text));
         }
 
         //After search window is closed, check property SelectedInvoiceId in the Search window to see if an invoice is selected. If so load invoice.
