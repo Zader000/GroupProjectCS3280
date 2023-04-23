@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GroupProject.Items;
 using GroupProject.Main;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GroupProject
 {
@@ -39,9 +40,10 @@ namespace GroupProject
             InitializeComponent();
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             _logic = new MainLogic();
-            
+
             Items = _logic.LoadItemsFromDataBase();
             ItemsComboBox.ItemsSource = (from item in Items select $"{item.Code}. {item.Description}").ToList();
+            InvoiceItems = new List<Item>();
 
         }
 
@@ -137,7 +139,7 @@ namespace GroupProject
 
         private void DeleteInvoice(object sender, RoutedEventArgs e)
         {
-            if (DeleteText.Text == "") 
+            if (DeleteText.Text == "")
             {
                 ErrorLabel.Content = "Error! You must first enter an invoice number!";
                 return;
@@ -150,19 +152,33 @@ namespace GroupProject
         //After search window is closed, check property SelectedInvoiceId in the Search window to see if an invoice is selected. If so load invoice.
 
         //After Items window is closed, check property HasItemsBeenChanged in the Items window to see if any items were updated. If so re-load items in combo box.
-        
-        
+
+
         private void ItemsComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 SelectedItem = (from item in Items where $"{item.Code}. {item.Description}" == ItemsComboBox.SelectedItem.ToString() select item)
                     .FirstOrDefault() ?? throw new Exception("No Matching Item Found");
+                ReadOnly.Text = SelectedItem.Cost.ToString();
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
             }
+        }
+
+        private void AddComboBoxItem(object sender, RoutedEventArgs e)
+        {
+            if (ItemsComboBox.SelectedItem == null) 
+            {
+                ErrorLabel.Content = "Error! No item is selected!";
+                return;
+            }
+            ErrorLabel.Content = "";
+            IList<Item> InvoiceItems;
+            DataGrid.ItemsSource = null;
+            DataGrid.ItemsSource = InvoiceItems;
         }
     }
 }
