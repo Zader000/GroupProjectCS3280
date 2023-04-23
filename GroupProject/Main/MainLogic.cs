@@ -78,5 +78,13 @@ namespace GroupProject.Main
             // Execute the query
             _dataAccess.ExecuteNonQuery(query);
         }
+        
+        public void InsertInvoice(int invoiceNumber, string customerName, string invoiceDate, double invoiceAmount)
+        {
+            // Create the query
+            string query = MainSql.InsertInvoice(invoiceNumber, customerName, invoiceDate, invoiceAmount);
+            // Execute the query
+            _dataAccess.ExecuteNonQuery(query);
+        }
     }
 }

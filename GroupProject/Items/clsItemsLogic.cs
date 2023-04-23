@@ -1,6 +1,7 @@
 ﻿using GroupProject.Data;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
@@ -27,10 +28,19 @@ namespace GroupProject.Items
             return items;
         }
 
+        
         public void LoadItemsFromDatabase()
         {
-            // TODO: Implement code to load items from the database into _items
+            string query = clsItemsSQL.getItems();
+            DataSet ds = data.ExecuteQuery(query);
             
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                string ItemCode = row["ItemCode"].ToString();
+                string ItemDesc = row["ItemDesc"].ToString();
+                string Cost = row["Cost"].ToString();
+                items.Add(new Item(ItemCode, ItemDesc, Cost));
+            }
         }
 
         public void AddItem(string ItemCode, string ItemDesc, string Cost)

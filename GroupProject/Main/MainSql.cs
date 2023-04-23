@@ -20,6 +20,12 @@ namespace GroupProject.Main
             return $"UPDATE Invoices SET TotalCost = {cost} WHERE InvoiceNum = {InvNum};";
         }*/
 
+        
+        //get invoice by id
+        public static string GetInvoiceByIdQuery(int invoiceId)
+        {
+            return $"SELECT * FROM Invoice WHERE ID = {invoiceId};";
+        }
 
         /// <summary>
         /// Updates the invoice based on totalcost and invoice number
@@ -89,12 +95,8 @@ namespace GroupProject.Main
         {
             return $"DELETE FROM LineItems WHERE InvoiceNum = {num};";
         }
-       
-        public static string GetInvoiceByIdQuery(int invoiceID)
-        {
-            return $"SELECT * FROM Invoice WHERE ID = {invoiceID};";
-        }
-} 
+
+    } 
 }
 //Examples of SQL statements needed for future use
 /*
