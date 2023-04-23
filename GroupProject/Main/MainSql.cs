@@ -19,12 +19,6 @@ namespace GroupProject.Main
         {
             return $"UPDATE Invoices SET TotalCost = {cost} WHERE InvoiceNum = {InvNum};";
         }*/
-        
-        //get invoice by id query
-        public static string GetInvoiceByIdQuery(int invoiceId)
-        {
-            return $"SELECT * FROM Invoice WHERE ID = {invoiceId}";
-        }
 
 
         /// <summary>
@@ -41,17 +35,60 @@ namespace GroupProject.Main
         /// Makes an insert into the lineitems based on num, lineitem and itemcode
         /// </summary>
         /// <returns></returns>
-        public static string InsertLineItems(int num, int LineItem, string ItemCode) 
+        public static string InsertLineItems(int num, int LineItem, string ItemCode)
         {
             return $"INSERT INTO LineItems(InvoiceNum, LineItemNum, ItemCode) Values({num}, {LineItem}, {ItemCode});";
         }
 
+        /// <summary>
+        /// Insert into invoices based on date and cost values
+        /// </summary>
+        /// <param name="Date"></param>
+        /// <param name="Cost"></param>
+        /// <returns></returns>
         public static string InsertInvoices(string Date, double Cost)
         {
-            return $"INSERT INTO Invoice (InvoiceDate, TotalCost) Values({Date}, {Cost});";
+            return $"INSERT INTO Invoice(InvoiceDate, TotalCost) Values({Date}, {Cost});";
         }
 
+        /// <summary>
+        /// Select from the invoices based on the invoice number
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static string SelectFromInvoices(int num)
+        {
+            return $"SELECT InvoiceNum, InvoiceDate, TotalCost FROM Invoice WHERE InvoiceNum = {num};";
+        }
 
+        /// <summary>
+        /// Selects item code, item description and cost from ItemDesc
+        /// </summary>
+        /// <returns></returns>
+        public static string SelectDescription()
+        {
+            return $"select ItemCode, ItemDesc, Cost from ItemDesc;";
+        }
+
+        /// <summary>
+        /// Selects specific values from 
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static string SelectSpecific(int num) 
+        {
+            return $"SELECT LineItems.ItemCode, ItemDesc.ItemDesc, ItemDesc.Cost FROM LineItems, ItemDesc Where LineItems.ItemCode = ItemDesc.ItemCode And LineItems.InvoiceNum = {num}\r\n;";
+        }
+
+        /// <summary>
+        /// Method initiates a delete on LineItems based on the invoice number
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static string Delete(int num) 
+        {
+            return $"DELETE FROM LineItems WHERE InvoiceNum = {num};";
+        }
        
     }
 }
@@ -66,3 +103,4 @@ Main Window
 - SELECT LineItems.ItemCode, ItemDesc.ItemDesc, ItemDesc.Cost FROM LineItems, ItemDesc Where LineItems.ItemCode = ItemDesc.ItemCode And LineItems.InvoiceNum = 5000
 - DELETE FROM LineItems WHERE InvoiceNum = 5000
  */
+
