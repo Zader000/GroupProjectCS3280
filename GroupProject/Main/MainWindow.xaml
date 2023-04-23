@@ -29,7 +29,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="359,251,23,10">
+        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="359,289,46,10">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="70" DisplayMemberBinding="{Binding from}" />
@@ -42,21 +42,24 @@
         </ListView>
         <Label x:Name="ItemsLabel" Content="Items:" HorizontalAlignment="Left" Margin="435,27,0,0" VerticalAlignment="Top"/>
         <Label x:Name="CostLabel" Content="Cost:" HorizontalAlignment="Left" Margin="638,25,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="AddButton" Content="Add Item" HorizontalAlignment="Left" Margin="630,80,0,0" VerticalAlignment="Top" Click="addInvoice"/>
-        <Button x:Name="RemoveButton" Content="Remove Item" HorizontalAlignment="Left" Margin="703,80,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="AddButton" Content="Add Item" HorizontalAlignment="Left" Margin="466,154,0,0" VerticalAlignment="Top" Click="addInvoice"/>
+        <Button x:Name="RemoveButton" Content="Remove Item" HorizontalAlignment="Left" Margin="501,248,0,0" VerticalAlignment="Top" Click="DeleteInvoice"/>
         <ComboBox HorizontalAlignment="Left" Margin="482,29,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem Content="Item #1"/>
         </ComboBox>
         <Button x:Name="ItemsWindowOpen" HorizontalAlignment="Left" Margin="77,311,0,0" VerticalAlignment="Top" Height="44" Width="89" Click="OpenItems" Content="ItemsWindow">
         </Button>
-        <TextBox x:Name="InvoiceText" HorizontalAlignment="Left" Margin="634,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="CustomerText" HorizontalAlignment="Left" Margin="634,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="DateText" HorizontalAlignment="Left" Margin="634,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="AmountText" HorizontalAlignment="Left" Margin="634,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="InvoiceNumLabel" Content="Invoice Num:" HorizontalAlignment="Left" Margin="535,118,0,0" VerticalAlignment="Top"/>
         <Label x:Name="CustomerLabel" Content="Customer:" HorizontalAlignment="Left" Margin="543,141,0,0" VerticalAlignment="Top"/>
         <Label x:Name="DateLabel" Content="Date:" HorizontalAlignment="Left" Margin="556,164,0,0" VerticalAlignment="Top"/>
         <Label x:Name="AmountLabel" Content="Amount:" HorizontalAlignment="Left" Margin="547,183,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="ErrorLabel" Content="" HorizontalAlignment="Left" Margin="619,225,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="ErrorLabel" Content="" HorizontalAlignment="Left" Margin="483,56,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Description" Content="Add Invoice Information" HorizontalAlignment="Left" Margin="575,83,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="NumberLabel" Content="Invoice Number:" HorizontalAlignment="Left" Margin="526,114,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="InvoiceNumText" HorizontalAlignment="Left" Margin="634,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="DeleteInvoiceLabel" Content="Select Invoice Number to Delete" HorizontalAlignment="Left" Margin="568,217,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="DeleteText" HorizontalAlignment="Left" Margin="634,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
