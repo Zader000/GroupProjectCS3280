@@ -28,7 +28,7 @@ namespace GroupProject
         private MainLogic _logic;
 
         private int InvoiceID { get; set; }
-        
+
         private Invoice SelectedInvoice { get; set; }
 
         public MainWindow()
@@ -51,7 +51,7 @@ namespace GroupProject
             }
         }
 
-   
+
         private void GoToSearch(object sender, RoutedEventArgs e)
         {
             try
@@ -70,7 +70,7 @@ namespace GroupProject
             {
                 wndSearch = new SearchWindow();
                 wndSearch.ShowDialog();
-                
+
                 if (!(wndSearch.DialogResult ?? false))
                     return;
                 // Get the invoice ID from the search window
@@ -80,7 +80,7 @@ namespace GroupProject
                 // Set the invoice in the data grid
                 InvoiceDataGrid.ItemsSource = null;
                 InvoiceDataGrid.ItemsSource = new List<Invoice> { SelectedInvoice };
-                
+
             }
             catch (Exception exception)
             {
@@ -104,6 +104,30 @@ namespace GroupProject
             {
                 MessageBox.Show($"{exception.Message}");
             }
+        }
+
+        private void addInvoice(object sender, RoutedEventArgs e)
+        {
+            if (InvoiceText.Text == "" || CustomerText.Text == "" || AmountText.Text == "" || DateText.Text == "") 
+            {
+                ErrorLabel.Content = "Error! Invoice fields must all be filled out!";
+                return;
+            }
+
+            ErrorLabel.Content = "";
+
+        }
+
+        private void EditInvoice(object sender, RoutedEventArgs e)
+        {
+            if (EditAmount.Text == "" || EditNumber.Text == "") 
+            {
+                ErrorLabel.Content = "Error! Number and amount must be filled in!";
+                return;
+            }
+            ErrorLabel.Content = "";
+
+            MainLogic.UpdateInvoiceAmount(Int32.Parse(EditNumber.Text), Double.Parse(EditAmount.Text));
         }
 
         //After search window is closed, check property SelectedInvoiceId in the Search window to see if an invoice is selected. If so load invoice.
