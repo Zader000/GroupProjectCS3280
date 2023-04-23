@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,16 +11,42 @@ namespace GroupProject.Main
     /// </summary>
     public static class MainSql
     {
-        
-        public static string GetInvoiceByIdQuery(int id)
+        /// <summary>
+        /// Updates the invoice based on totalcost and invoice number
+        /// </summary>
+        /// <returns></returns>
+        /*public static string UpdatebyInvoiceNum(int cost, int InvNum) 
         {
-            return $"select * from Invoice where ID = {id};";
-        }
+            return $"UPDATE Invoices SET TotalCost = {cost} WHERE InvoiceNum = {InvNum};";
+        }*/
 
+
+        /// <summary>
+        /// Updates the invoice based on totalcost and invoice number
+        /// </summary>
+        /// <returns></returns>
         public static string UpdateInvoiceAmountStatement(int invoiceNumber, double invoiceAmount)
         {
-            return "update Invoices set InvoiceAmount = {invoiceAmount} where InvoiceNumber = {invoiceNumber}";
+            return $"UPDATE Invoices SET InvoiceAmount = {invoiceAmount} where InvoiceNumber = {invoiceNumber}";
         }
+
+
+        /// <summary>
+        /// Makes an insert into the lineitems based on num, lineitem and itemcode
+        /// </summary>
+        /// <returns></returns>
+        public static string InsertLineItems(int num, int LineItem, string ItemCode) 
+        {
+            return $"INSERT INTO LineItems(InvoiceNum, LineItemNum, ItemCode) Values({num}, {LineItem}, {ItemCode});";
+        }
+
+        public static string InsertInvoices(string Date, double Cost)
+        {
+            return $"INSERT INTO Invoices(InvoiceDate, TotalCost) Values({Date}, {Cost});";
+        }
+
+
+       
     }
 }
 //Examples of SQL statements needed for future use
