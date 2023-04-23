@@ -78,8 +78,6 @@ namespace GroupProject
                 // Get the invoice from the database
                 SelectedInvoice = _logic.GetInvoiceById(InvoiceID);
                 // Set the invoice in the data grid
-                InvoiceDataGrid.ItemsSource = null;
-                InvoiceDataGrid.ItemsSource = new List<Invoice> { SelectedInvoice };
 
             }
             catch (Exception exception)
@@ -127,7 +125,7 @@ namespace GroupProject
             }
             ErrorLabel.Content = "";
 
-            MainLogic.UpdateInvoiceAmount(Int32.Parse(EditNumber.Text), Double.Parse(EditAmount.Text));
+            _logic.UpdateInvoiceAmount(Int32.Parse(EditNumber.Text), Double.Parse(EditAmount.Text));
         }
 
         //After search window is closed, check property SelectedInvoiceId in the Search window to see if an invoice is selected. If so load invoice.

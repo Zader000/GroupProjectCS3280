@@ -19,6 +19,12 @@ namespace GroupProject.Main
         {
             return $"UPDATE Invoices SET TotalCost = {cost} WHERE InvoiceNum = {InvNum};";
         }*/
+        
+        //get invoice by id query
+        public static string GetInvoiceByIdQuery(int invoiceId)
+        {
+            return $"SELECT * FROM Invoice WHERE ID = {invoiceId}";
+        }
 
 
         /// <summary>
@@ -27,7 +33,7 @@ namespace GroupProject.Main
         /// <returns></returns>
         public static string UpdateInvoiceAmountStatement(int invoiceNumber, double invoiceAmount)
         {
-            return $"UPDATE Invoices SET InvoiceAmount = {invoiceAmount} where InvoiceNumber = {invoiceNumber}";
+            return $"UPDATE Invoice SET InvoiceAmount = {invoiceAmount} where InvoiceNumber = {invoiceNumber}";
         }
 
 
@@ -42,7 +48,7 @@ namespace GroupProject.Main
 
         public static string InsertInvoices(string Date, double Cost)
         {
-            return $"INSERT INTO Invoices(InvoiceDate, TotalCost) Values({Date}, {Cost});";
+            return $"INSERT INTO Invoice (InvoiceDate, TotalCost) Values({Date}, {Cost});";
         }
 
 
