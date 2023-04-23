@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Markup;
 using GroupProject.Data;
+using GroupProject.Items;
 
 namespace GroupProject.Main
 {
@@ -51,6 +53,27 @@ namespace GroupProject.Main
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IList<Item> LoadItemsFromDataBase() 
+        {
+            IList<Item> items = new List<Item>();
+            string query = clsItemsSQL.getItems();
+            DataSet ds = data.ExecuteQuery(query);
+
+            foreach (DataRow row in ds.Tables[0].Rows) 
+            {
+                string ItemCode = row["ItemCode"].ToString();
+                string ItemDesc = row["ItemDesc"].ToString();
+                string Cost = row["Cost"].ToString();
+                items.Add(new Item(ItemCode, ItemDesc, Cost));
+            }
+            return items;
+        }
+
+
+        /// <summary>
         /// Used to update the invoice amount on call based on invoice number and invoice amount
         /// </summary>
         /// <param name="invoiceNumber"></param>
@@ -75,14 +98,6 @@ namespace GroupProject.Main
         {
             // Create the query
             string query = MainSql.Delete(num);
-            // Execute the query
-            _dataAccess.ExecuteNonQuery(query);
-        }
-        
-        public void InsertInvoice(int invoiceNumber, string customerName, string invoiceDate, double invoiceAmount)
-        {
-            // Create the query
-            string query = MainSql.InsertInvoice(invoiceNumber, customerName, invoiceDate, invoiceAmount);
             // Execute the query
             _dataAccess.ExecuteNonQuery(query);
         }
