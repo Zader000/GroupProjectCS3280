@@ -29,24 +29,13 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="359,289,46,10">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" Width="70" DisplayMemberBinding="{Binding from}" />
-                    <GridViewColumn Header="Invoice" Width="70" DisplayMemberBinding="{Binding from}" />
-                    <GridViewColumn Header="Customer" Width="70" DisplayMemberBinding="{Binding from}" />
-                    <GridViewColumn Header="Date Invoiced" Width="70" DisplayMemberBinding="{Binding from}" />
-                    <GridViewColumn Header="Invoice Amount" Width="100" DisplayMemberBinding="{Binding from}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
         <Label x:Name="ItemsLabel" Content="Items:" HorizontalAlignment="Left" Margin="435,27,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="CostLabel" Content="Cost:" HorizontalAlignment="Left" Margin="638,25,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="CostLabel" Content="Cost:" HorizontalAlignment="Left" Margin="613,25,0,0" VerticalAlignment="Top"/>
         <Button x:Name="AddButton" Content="Add Item" HorizontalAlignment="Left" Margin="466,154,0,0" VerticalAlignment="Top" Click="addInvoice"/>
         <Button x:Name="RemoveButton" Content="Remove Item" HorizontalAlignment="Left" Margin="501,248,0,0" VerticalAlignment="Top" Click="DeleteInvoice"/>
         <ComboBox HorizontalAlignment="Left" Margin="482,29,0,0" VerticalAlignment="Top" Width="120" Name="ItemsComboBox" SelectionChanged="ItemsComboBox_OnSelectionChanged">
         </ComboBox>
-        <Button x:Name="ItemsWindowOpen" HorizontalAlignment="Left" Margin="77,311,0,0" VerticalAlignment="Top" Height="44" Width="89" Click="OpenItems" Content="ItemsWindow">
+        <Button x:Name="ItemsWindowOpen" HorizontalAlignment="Left" Margin="568,310,0,0" VerticalAlignment="Top" Height="44" Width="89" Click="OpenItems" Content="ItemsWindow">
         </Button>
         <TextBox x:Name="CustomerText" HorizontalAlignment="Left" Margin="634,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="DateText" HorizontalAlignment="Left" Margin="634,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -60,5 +49,7 @@
         <TextBox x:Name="InvoiceNumText" HorizontalAlignment="Left" Margin="634,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="DeleteInvoiceLabel" Content="Select Invoice Number to Delete" HorizontalAlignment="Left" Margin="568,217,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox x:Name="DeleteText" HorizontalAlignment="Left" Margin="634,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ReadOnly" HorizontalAlignment="Left" Margin="649,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <DataGrid d:Name = "Item List" ItemsSource="{d:SampleData ItemCount=5}" Margin="10,293,322,10"/>
     </Grid>
 </Window>
