@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using GroupProject.Items;
 using GroupProject.Main;
 using static System.Net.Mime.MediaTypeNames;
+using Application = System.Windows.Application;
 
 namespace GroupProject
 {
@@ -34,6 +35,8 @@ namespace GroupProject
         private Item SelectedItem { get; set; }
 
         private Invoice SelectedInvoice { get; set; }
+        
+        private IList<Item> InvoiceItems { get; set; }
 
         public MainWindow()
         {
@@ -176,9 +179,9 @@ namespace GroupProject
                 return;
             }
             ErrorLabel.Content = "";
-            IList<Item> InvoiceItems;
-            DataGrid.ItemsSource = null;
-            DataGrid.ItemsSource = InvoiceItems;
+            ItemDataGrid.ItemsSource = null;
+            ItemDataGrid.ItemsSource = InvoiceItems;
+
         }
     }
 }
