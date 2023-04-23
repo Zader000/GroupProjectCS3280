@@ -29,12 +29,14 @@ namespace GroupProject
         {
             InitializeComponent();
             _logic.LoadItemsFromDatabase();
-            //dataGrid.ItemsSource = _logic.Items;
             _data = new clsDataAccess();
-            //_data.PopulateItemGrid();
             RefreshDataGrid();
         }
 
+
+        /// <summary>
+        /// function to refresh the datagrid, prints out all the items in the datagrid.
+        /// </summary>
         private void RefreshDataGrid()
         {
             //dataGrid.ItemsSource = _logic.getItems();
@@ -43,25 +45,14 @@ namespace GroupProject
             dataGrid.ItemsSource = table.Tables[0].DefaultView;
         }
 
+
+        /// <summary>
+        /// Takes the user input and allows them to edit an item.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            /*code = txtCode.Text;
-            cost = txtCost.Text;
-            desc = txtDesc.Text;
-            //make use of business logic functions to allow user to edit the items.
-            var selectedItem = dataGrid.SelectedItem as Item;
-
-            if (selectedItem != null)
-            {
-                *//*AddEditItemWindow addEditItemWindow = new AddEditItemWindow(selectedItem);
-                addEditItemWindow.Owner = this;
-
-                if (addEditItemWindow.ShowDialog() == true)
-                {
-                    _logic.UpdateItem(addEditItemWindow.Item, *//*pass in the value to edit here.*//*);
-                    RefreshDataGrid();
-                }*//*
-            }*/
             code = txtCode.Text;
             cost = txtCost.Text;
             desc = txtDesc.Text;
@@ -80,7 +71,12 @@ namespace GroupProject
             }
         }
 
-
+        /// <summary>
+        /// Method that deletes an item from the database. It checks whether an item appears on an invoice and 
+        /// makes sure the user actually wants to delete it.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             //make use of business logic functions to allow user to delete the items.
@@ -90,9 +86,9 @@ namespace GroupProject
             desc = txtDesc.Text;
             if (_logic.checkItem(code))
             {
-                DialogResult result= MessageBox.Show("Warning: This item appears in an invoice. Do you still want to " +
+                MessageBoxResult result= MessageBox.Show("Warning: This item appears in an invoice. Do you still want to " +
                     "delete the item?", "Warning", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-                if (result == MessageBoxButton.OK)
+                if (result == MessageBoxResult.OK)
                 {
                     if (code == null || cost == null || desc == null)
                     {
@@ -110,6 +106,12 @@ namespace GroupProject
             }
         }
 
+
+        /// <summary>
+        /// Adds the data to the datagrid, using the user input. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             

@@ -23,12 +23,19 @@ namespace GroupProject.Items
             sql = new clsItemsSQL();
         }
 
+        /// <summary>
+        /// Method for getting the list of items.
+        /// </summary>
+        /// <returns>A list of Item objects.</returns>
         public List<Item> getItems()
         {
             return items;
         }
 
-        
+
+        /// <summary>
+        /// Method for loading items from the database and storing them in the items list.
+        /// </summary>
         public void LoadItemsFromDatabase()
         {
             string query = clsItemsSQL.getItems();
@@ -43,6 +50,12 @@ namespace GroupProject.Items
             }
         }
 
+        /// <summary>
+        /// Method for adding a new item to the database and the items list.
+        /// </summary>
+        /// <param name="ItemCode">The item code of the new item.</param>
+        /// <param name="ItemDesc">The item description of the new item.</param>
+        /// <param name="Cost">The cost of the new item.</param>
         public void AddItem(string ItemCode, string ItemDesc, string Cost)
         {
             // TODO: Implement code to add a new item to the database and _items
@@ -53,7 +66,12 @@ namespace GroupProject.Items
         }
 
 
-
+        /// <summary>
+        /// Method for updating an item in the database and the items list.
+        /// </summary>
+        /// <param name="ItemDesc">The new item description for the item to be updated.</param>
+        /// <param name="Cost">The new cost for the item to be updated.</param>
+        /// <param name="ItemCode">The item code of the item to be updated.</param>
         public void UpdateItem(string ItemDesc, string Cost, string ItemCode)
         {
             // TODO: Implement code to update an item in the database and _items
@@ -62,6 +80,10 @@ namespace GroupProject.Items
 
         }
 
+        /// <summary>
+        /// Method for deleting an item from the database and the items list.
+        /// </summary>
+        /// <param name="ItemCode">The item code of the item to be deleted.</param>
         public void DeleteItem(string ItemCode)
         {
             // TODO: Implement code to delete an item from the database and _items
@@ -69,23 +91,12 @@ namespace GroupProject.Items
             data.ExecuteQuery(clsItemsSQL.deleteDesc(ItemCode));
         }
 
-        /*public bool IsItemInUseOnInvoice(Item item)
-        {
-            // TODO: Implement code to check if an item is currently in use on an invoice
-            // Return true if the item is in use, false otherwise
-            foreach (Invoice invoice in clsInvoiceLogic.Invoices)
-            {
-                foreach (InvoiceLineItem lineItem in invoice.LineItems)
-                {
-                    if (lineItem.Item == item)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }*/
 
+        /// <summary>
+        /// Checks if an item appears in an invoice by querying the database.
+        /// </summary>
+        /// <param name="itemCode">The code of the item to check.</param>
+        /// <returns>Returns true if the item appears in an invoice, false otherwise.</returns>
         public bool checkItem(string itemCode)
         {
             string query = clsItemsSQL.getInvoiceNum(itemCode);

@@ -14,16 +14,16 @@ namespace GroupProject.Data
     {
         private const string _connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=../../../Data/DB.accdb";
 
-        
+
 
         /// <summary>
-        /// 
+        /// Executes the specified SQL query and returns the result in a dataset.
         /// </summary>
-        /// <param name="stmt"></param>
-        /// <returns></returns>
+        /// <param name="stmt">The SQL query to execute.</param>
+        /// <returns>The result of the query in a dataset.</returns>
+        /// <exception cref="Exception">Thrown when an error occurs while executing the query.</exception>
         public DataSet ExecuteQuery(string stmt)
         {
-            //_items = new ItemsWindow();
             try
             {
                 DataSet ds = new DataSet();
@@ -45,10 +45,11 @@ namespace GroupProject.Data
         }
 
         /// <summary>
-        /// 
+        /// Executes a non-query SQL statement on the database and returns the number of rows affected.
         /// </summary>
-        /// <param name="stmt"></param>
-        /// <returns></returns>
+        /// <param name="stmt">The SQL statement to execute.</param>
+        /// <returns>The number of rows affected by the executed SQL statement.</returns>
+        /// <exception cref="Exception">Thrown when an error occurs while executing the SQL statement.</exception>
         public int ExecuteNonQuery(string stmt)
         {
             //executes non query
