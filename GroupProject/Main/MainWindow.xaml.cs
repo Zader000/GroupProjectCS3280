@@ -35,7 +35,7 @@ namespace GroupProject
         private Item SelectedItem { get; set; }
 
         private Invoice SelectedInvoice { get; set; }
-        
+
         private IList<Item> InvoiceItems { get; set; }
 
         public MainWindow()
@@ -173,7 +173,7 @@ namespace GroupProject
 
         private void AddComboBoxItem(object sender, RoutedEventArgs e)
         {
-            if (ItemsComboBox.SelectedItem == null) 
+            if (ItemsComboBox.SelectedItem == null)
             {
                 ErrorLabel.Content = "Error! No item is selected!";
                 return;
@@ -183,6 +183,17 @@ namespace GroupProject
             ItemDataGrid.ItemsSource = null;
             ItemDataGrid.ItemsSource = InvoiceItems;
 
+        }
+
+        private void DeleteComboItem(object sender, RoutedEventArgs e)
+        {
+            if (ItemsComboBox.SelectedItem == null)
+            {
+                ErrorLabel.Content = "Error! No item is selected!";
+                return;
+            }
+            ErrorLabel.Content = "";
+            InvoiceItems.Remove(SelectedItem);
         }
     }
 }
