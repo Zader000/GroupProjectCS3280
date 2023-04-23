@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace GroupProject.Main
     public class MainLogic
     {
         private readonly clsDataAccess _dataAccess;
-        
+
         public MainLogic()
         {
             _dataAccess = new clsDataAccess();
@@ -21,13 +21,13 @@ namespace GroupProject.Main
         //SaveNewInvoice(clsInvoice)
         //EditInvoice(clsOldInvoice, clsNewInvoice)
         //GetInvoice(InvoiceNumber) returns clsInvoice - Get the invoice and items for the selected invoice from search window
-        
-        
+
+
         public Invoice GetInvoiceById(int invoiceId)
         {
             // Get the invoice from the database
             DataSet ds = _dataAccess.ExecuteQuery(MainSql.GetInvoiceByIdQuery(invoiceId));
-           
+
             // Check if the query returned any data
             if (ds.Tables.Count == 0)
             {
@@ -49,7 +49,12 @@ namespace GroupProject.Main
             // Return the invoice
             return new Invoice(id, invoiceNumber, customerName, invoiceDate, invoiceAmount);
         }
-        
+
+        /// <summary>
+        /// Used to update the invoice amount on call based on invoice number and invoice amount
+        /// </summary>
+        /// <param name="invoiceNumber"></param>
+        /// <param name="invoiceAmount"></param>
         public void UpdateInvoiceAmount(int invoiceNumber, double invoiceAmount)
         {
             // Create the query
