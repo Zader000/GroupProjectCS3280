@@ -85,5 +85,19 @@ namespace GroupProject.Items
             }
             return false;
         }*/
+
+        public bool checkItem(string itemCode)
+        {
+            string query = clsItemsSQL.getInvoiceNum(itemCode);
+            DataSet results = data.ExecuteQuery(query);
+            if(results.Tables[0].Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 }
 }

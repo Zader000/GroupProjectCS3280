@@ -88,17 +88,25 @@ namespace GroupProject
             code = txtCode.Text;
             cost = txtCost.Text;
             desc = txtDesc.Text;
-            if (code == null || cost == null || desc == null)
+            if (_logic.checkItem(code))
             {
-                lblDisplay.Content = "Please make sure you have added the correct matching data to \n" +
-                    "delete the appropriate item.";
-                return;
-            }
-            else
-            {
-                _logic.DeleteItem(code);
-                lblDisplay.Content = "Item deleted from database.";
-                RefreshDataGrid();
+                DialogResult result= MessageBox.Show("Warning: This item appears in an invoice. Do you still want to " +
+                    "delete the item?", "Warning", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                if (result == MessageBoxButton.OK)
+                {
+                    if (code == null || cost == null || desc == null)
+                    {
+                        lblDisplay.Content = "Please make sure you have added the correct matching data to \n" +
+                            "delete the appropriate item.";
+                        return;
+                    }
+                    else
+                    {
+                        _logic.DeleteItem(code);
+                        lblDisplay.Content = "Item deleted from database.";
+                        RefreshDataGrid();
+                    }
+                }
             }
         }
 
@@ -119,6 +127,9 @@ namespace GroupProject
                 lblDisplay.Content = "Item added to database.";
                 RefreshDataGrid();
             }
+            
         }
+
+
     }
 }
