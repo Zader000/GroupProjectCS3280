@@ -60,7 +60,7 @@ namespace GroupProject.Main
         {
             IList<Item> items = new List<Item>();
             string query = clsItemsSQL.getItems();
-            DataSet ds = data.ExecuteQuery(query);
+            DataSet ds = _dataAccess.ExecuteQuery(query);
 
             foreach (DataRow row in ds.Tables[0].Rows) 
             {

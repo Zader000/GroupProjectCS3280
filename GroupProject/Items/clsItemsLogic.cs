@@ -36,10 +36,10 @@ namespace GroupProject.Items
             
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                string ItemCode = row["ItemCode"].ToString();
-                string ItemDesc = row["ItemDesc"].ToString();
-                string Cost = row["Cost"].ToString();
-                items.Add(new Item(ItemCode, ItemDesc, Cost));
+                string itemCode = row["ItemCode"].ToString() ?? "";
+                string itemDesc = row["ItemDesc"].ToString() ?? "";
+                string cost = row["Cost"].ToString() ?? "";
+                items.Add(new Item(itemCode, itemDesc, cost));
             }
         }
 

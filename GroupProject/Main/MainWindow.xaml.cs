@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GroupProject.Items;
 using GroupProject.Main;
 
 namespace GroupProject
@@ -26,8 +27,10 @@ namespace GroupProject
         private SearchWindow wndSearch;
         private ItemsWindow wndItem;
         private MainLogic _logic;
+        private IList<Item> Items;
 
         private int InvoiceID { get; set; }
+        private Item SelectedItem { get; set; }
 
         private Invoice SelectedInvoice { get; set; }
 
@@ -36,6 +39,9 @@ namespace GroupProject
             InitializeComponent();
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             _logic = new MainLogic();
+            
+            Items = _logic.LoadItemsFromDataBase();
+            ItemsComboBox.ItemsSource = (from item in Items select $"{item.Code}. {item.Description}").ToList();
 
         }
 
@@ -144,5 +150,19 @@ namespace GroupProject
         //After search window is closed, check property SelectedInvoiceId in the Search window to see if an invoice is selected. If so load invoice.
 
         //After Items window is closed, check property HasItemsBeenChanged in the Items window to see if any items were updated. If so re-load items in combo box.
+        
+        
+        private void ItemsComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                SelectedItem = (from item in Items where $"{item.Code}. {item.Description}" == ItemsComboBox.SelectedItem.ToString() select item)
+                    .FirstOrDefault() ?? throw new Exception("No Matching Item Found");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
     }
 }
